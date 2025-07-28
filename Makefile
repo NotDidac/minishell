@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/07/28 16:59:29 by didguill         ###   ########.fr        #
+#    Updated: 2025/07/28 18:05:01 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,33 +21,36 @@ MAGENTA         = \033[0;95m
 CYAN            = \033[0;96m
 
 # ------------------------- #
-#      DIRECTORY PATHS      #
+#         VARIABLES         #
 # ------------------------- #
-NAME		= minishell
 
-SRCS_DIR	= src/
-MAIN_DIR	= $(SRCS_DIR)main/
-UTILS_DIR	= $(SRCS_DIR)utils/
-OBJS_DIR	= $(SRCS_DIR)obj/
+NAME			= minishell
 
+# Directories
+SRC_DIR			= src/
+SRC_MAIN_DIR	= $(SRC_DIR)main/
+SRC_UTILS_DIR	= $(SRC_DIR)utils/
+OBJ_DIR			= $(SRC_DIR)obj/
+INC_DIR			= inc/
 
-# ------------------------- #
-#       SOURCE FILES        #
-# ------------------------- #
-SRCS_MAIN	= main.c
+# Libft
+LIBFT_DIR		= libft/
+LIBFT_INC		= $(LIBFT_DIR)inc/
+LIBFT_A			= $(LIBFT_DIR)libft.a
 
-SRCS_UTILS	= utils.c
+# Source files
+SRC_MAIN	= main.c
 
-SRC_FILES	= $(addprefix $(MAIN_DIR), $(SRCS_MAIN))\
-			$(addprefix $(UTILS_DIR), $(SRCS_UTILS))
+SRC_UTILS	= utils.c
 
-OBJ_FILES = $(patsubst $(SRCS_DIR)%.c, $(OBJS_DIR)%.o, $(SRC_FILES))
+SRCS		= $(addprefix $(SRC_MAIN_DIR), $(SRC_MAIN)) \
+			  $(addprefix $(SRC_UTILS_DIR), $(SRC_UTILS))
 
-# ------------------------- #
-#       COMPILER FLAGS      #
-# ------------------------- #
+OBJS 		= $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS))
+
+# Compiler
 CC			= cc
-CFLAGS		= -Wall -Werror -Wextra -I ./inc/ -MMD -MP
+CFLAGS		= -Wall -Werror -Wextra -I$(INC_DIR) -I$(LIBFT_INC) -MMD -MP
 RM			= rm -rf
 
 MAKEFLAGS	+= --no-print-directory
@@ -58,30 +61,38 @@ MAKEFLAGS	+= --no-print-directory
 
 all: $(NAME)
 
-$(NAME): $(OBJ_FILES)
-	@echo -n "$(CYAN)Compiling and linking $(NAME)... $(DEF_COLOR)"
-	@$(CC) $(OBJ_FILES) -o $(NAME)
+$(NAME): $(LIBFT_A) $(OBJS)
+	@echo -n "$(CYAN)Linking $(NAME)... $(DEF_COLOR)"
+	@$(CC) $(OBJS) $(LIBFT_A) -o $(NAME)
 	@echo "$(GREEN)Done!$(DEF_COLOR)"
 	@echo "$(GREEN)(o_o) $(RED)$(NAME) $(GREEN)generated!\n$(DEF_COLOR)"
 
-# Pattern rule to compile .c to .o in obj folder, creating directories as needed
-$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
-	@echo "$(MAGENTA)Compiling:$(YELLOW) $< ...$(DEF_COLOR)"
+$(LIBFT_A):
+	@$(MAKE) -C $(LIBFT_DIR)
+
+# Compile each object
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(dir $@)
+	@echo "$(MAGENTA)Compiling:$(YELLOW) $< ...$(DEF_COLOR)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo -n "$(CYAN)Removing object files... $(DEF_COLOR)"
-	@$(RM) $(OBJS_DIR)
+	@$(MAKE) -C $(LIBFT_DIR) clean
+	@echo -n "$(CYAN)Cleaning $(NAME) object files... $(DEF_COLOR)"
+	@$(RM) $(OBJ_DIR)
 	@echo "$(GREEN)Done!$(DEF_COLOR)"
 
-fclean: clean
-	@echo -n "$(CYAN)Removing executable $(NAME)... $(DEF_COLOR)"
+fclean:
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@echo -n "$(CYAN)Cleaning $(NAME) object files... $(DEF_COLOR)"
+	@$(RM) $(OBJ_DIR)
+	@echo "$(GREEN)Done!$(DEF_COLOR)"
+	@echo -n "$(CYAN)Removing $(NAME) binary... $(DEF_COLOR)"
 	@$(RM) $(NAME)
 	@echo "$(RED)(×_×) $(NAME) $(GREEN)removed!\n$(DEF_COLOR)"
 
 re: fclean all
 
--include $(OBJ_FILES:.o=.d)
+-include $(OBJS:.o=.d)
 
 .PHONY: all clean fclean re

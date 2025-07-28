@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/03 14:09:04 by didguill          #+#    #+#              #
-#    Updated: 2025/07/28 17:31:33 by didguill         ###   ########.fr        #
+#    Updated: 2025/07/28 18:00:34 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CYAN            = \033[0;96m
 # ------------------------- #
 #      DIRECTORY PATHS      #
 # ------------------------- #
-NAME 		= libft.a
+NAME 				= libft.a
 
 SRCS_DIR			= src/
 LIBFT_DIR			= $(SRCS_DIR)libft/
@@ -80,7 +80,7 @@ $(OBJ_DIR)%.o: $(SRCS_DIR)%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo -n "$(CYAN)Cleaning object files... $(DEF_COLOR)"
+	@echo -n "$(CYAN)Cleaning libft object files... $(DEF_COLOR)"
 	@$(RM) $(OBJ_DIR)
 	@echo "$(GREEN)Done!$(DEF_COLOR)"
 
