@@ -6,21 +6,33 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/28 19:20:26 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/29 20:04:22 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef SHELL_H
+# define SHELL_H
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-#include <errno.h>
-#include <limits.h>
+# include "libft.h"
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include <string.h>
+# include <errno.h>
+# include <limits.h>
+
+typedef struct s_shell
+{
+	char	**env;
+	char	*prompt;
+	int		status;
+}	t_shell;
 
 // utils.c
+
+// error_utils.c
+void	print_error_exit(char *cmd, char *msg);
+void	argc_check(int argc);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/07/28 19:14:34 by didguill         ###   ########.fr        #
+#    Updated: 2025/07/29 19:43:03 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ LIBFT_A			= $(LIBFT_DIR)libft.a
 # Source files
 SRC_MAIN	= main.c
 
-SRC_UTILS	= utils.c
+SRC_UTILS	= error_utils.c utils.c
 
 SRCS		= $(addprefix $(SRC_MAIN_DIR), $(SRC_MAIN)) \
 			  $(addprefix $(SRC_UTILS_DIR), $(SRC_UTILS))
