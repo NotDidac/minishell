@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/29 20:02:11 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/29 21:03:53 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,19 @@ static void	minishell_loop(t_shell *shell)
 	}
 } */
 
-int	main(int argc, char **envp)
+int	main(int argc, char **argv)
 {
 	t_shell	shell;
 
-	argc_check(argc);
-	(void)shell; // Avoid unused variable warning
-	(void)envp;  // Avoid unused variable warning
+	arg_check(argc, argv);
+	init_shell(&shell);
 
 	/*
-	init_shell(&shell, envp);      // Set up shell, env, prompt, status, etc.
 	setup_signal_handling();       // Setup SIGINT, SIGQUIT
-
 	minishell_loop(&shell);        // Main shell loop (read, parse, exec)
-
-	free_all(&shell);              // Final full cleanup (env, prompt, etc.)
 	*/
+
+	free_shell(&shell);
+
 	return (EXIT_SUCCESS);
 }

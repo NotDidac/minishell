@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/29 20:04:22 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/29 20:22:42 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,19 @@
 
 typedef struct s_shell
 {
-	char	**env;
 	char	*prompt;
-	int		status;
 }	t_shell;
+
+// init.c
+void	init_shell(t_shell *shell);
+
+// free.c
+void	free_shell(t_shell *shell);
 
 // utils.c
 
 // error_utils.c
 void	print_error_exit(char *cmd, char *msg);
-void	argc_check(int argc);
+void	arg_check(int argc, char **argv);
 
 #endif

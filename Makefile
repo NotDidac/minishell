@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/07/29 19:43:03 by didguill         ###   ########.fr        #
+#    Updated: 2025/07/29 21:00:22 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ LIBFT_INC		= $(LIBFT_DIR)inc/
 LIBFT_A			= $(LIBFT_DIR)libft.a
 
 # Source files
-SRC_MAIN	= main.c
+SRC_MAIN	= main.c init.c free.c
 
 SRC_UTILS	= error_utils.c utils.c
 
@@ -61,9 +61,14 @@ MAKEFLAGS	+= --no-print-directory
 
 all: $(NAME)
 
+debug: fclean all
+	@echo "$(CYAN)Running $(NAME) with Valgrind...$(DEF_COLOR)"
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind.log ./$(NAME)
+	@echo "$(GREEN)Valgrind run complete. See valgrind.log for details.$(DEF_COLOR)"
+
 $(NAME): $(LIBFT_A) $(OBJS)
 	@echo -n "$(CYAN)Linking $(NAME)... $(DEF_COLOR)"
-	@$(CC) $(OBJS) $(LIBFT_A) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) -o $(NAME)
 	@echo "$(GREEN)Done!$(DEF_COLOR)"
 	@echo "$(GREEN)(o_o) $(RED)$(NAME) $(GREEN)generated!\n$(DEF_COLOR)"
 
@@ -95,4 +100,4 @@ re: fclean all
 
 -include $(OBJS:.o=.d)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re debug
