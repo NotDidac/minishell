@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/29 21:03:53 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/29 22:58:13 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,36 +38,30 @@
 
 int	g_signal = 0;
 
-/*
-static void	minishell_loop(t_shell *shell)
+static void minishell_loop(t_shell *shell)
 {
-	char	*input;
+    while (true)
+    {
+        // 1. Read input (store in shell->input)
+        shell_readline(shell);
 
-	while (1)
-	{
-		input = readline(shell->prompt);
-		if (!input)
-			handle_ctrl_d(shell);  // Exit cleanly on Ctrl-D
+		// Exit loop if user requests it or input is NULL (ctrl-D)
+		if (shell->exit_requested || !shell->input)
+			break;
 
-		if (input[0] != '\0')
-			add_history(input);
+        // 2. Tokenize input into tokens stored in shell
+        lexer(shell);
 
-		if (!lexer(shell, input))  // Tokenize input
-		{
-			free(input);
-			continue;
-		}
-		if (!parser(shell))        // Build command structures
-		{
-			free_shell(shell, false);
-			free(input);
-			continue;
-		}
-		executor(shell);           // Run commands
-		free_shell(shell, true);   // Clean command-related memory
-		free(input);
-	}
-} */
+        // 3. Parse tokens into commands stored in shell
+        parser(shell);
+
+        // 4. Execute commands
+        executor(shell);
+
+        // 5. Clear tokens and commands for next iteration
+        clear_shell_state(shell);
+    }
+}
 
 int	main(int argc, char **argv)
 {
@@ -75,12 +69,7 @@ int	main(int argc, char **argv)
 
 	arg_check(argc, argv);
 	init_shell(&shell);
-
-	/*
-	setup_signal_handling();       // Setup SIGINT, SIGQUIT
-	minishell_loop(&shell);        // Main shell loop (read, parse, exec)
-	*/
-
+	minishell_loop(&shell);
 	free_shell(&shell);
 
 	return (EXIT_SUCCESS);

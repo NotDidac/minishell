@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/28 17:00:20 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/29 23:49:18 by didguill         ###   ########.fr       */
+/*   Created: 2025/07/29 23:31:40 by didguill          #+#    #+#             */
+/*   Updated: 2025/07/29 23:32:47 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-#include <readline/readline.h>
-#include <readline/history.h>
 
-void shell_readline(t_shell *shell)
+static void execute_command(char *command)
 {
-	char *line;
+	// Here you would implement the logic to execute a single command
+	// For now, we will just print the command to simulate execution
+	printf("Executing command: %s\n", command);
+	// In a real shell, you would use execve or similar functions here
+}
 
-	line = readline(shell->prompt);
-	if (!line)
-	{
-		shell->exit_requested = true;
-		shell->input = NULL;
+void executor(t_shell *shell)
+{
+	int i;
+
+	if (!shell->commands)
 		return ;
+	i = 0;
+	while (shell->commands[i])
+	{
+		execute_command(shell->commands[i]);
+		i++;
 	}
-	if (*line != '\0')
-		add_history(line);
-	shell->input = line;
 }

@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/07/29 21:00:22 by didguill         ###   ########.fr        #
+#    Updated: 2025/07/29 23:54:45 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ LIBFT_INC		= $(LIBFT_DIR)inc/
 LIBFT_A			= $(LIBFT_DIR)libft.a
 
 # Source files
-SRC_MAIN	= main.c init.c free.c
+SRC_MAIN	= shell.c init.c lexer.c parser.c executor.c free.c
 
 SRC_UTILS	= error_utils.c utils.c
 
@@ -51,6 +51,7 @@ OBJS 		= $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS))
 # Compiler
 CC			= cc
 CFLAGS		= -Wall -Werror -Wextra -I$(INC_DIR) -I$(LIBFT_INC) -MMD -MP
+LDFLAGS		= -lreadline
 RM			= rm -rf
 
 MAKEFLAGS	+= --no-print-directory
@@ -63,12 +64,12 @@ all: $(NAME)
 
 debug: fclean all
 	@echo "$(CYAN)Running $(NAME) with Valgrind...$(DEF_COLOR)"
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind.log ./$(NAME)
+	@valgrind --leak-check=full --show-leak-kinds=definite --track-origins=yes ./$(NAME)
 	@echo "$(GREEN)Valgrind run complete. See valgrind.log for details.$(DEF_COLOR)"
 
 $(NAME): $(LIBFT_A) $(OBJS)
 	@echo -n "$(CYAN)Linking $(NAME)... $(DEF_COLOR)"
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(LDFLAGS) -o $(NAME)
 	@echo "$(GREEN)Done!$(DEF_COLOR)"
 	@echo "$(GREEN)(o_o) $(RED)$(NAME) $(GREEN)generated!\n$(DEF_COLOR)"
 
