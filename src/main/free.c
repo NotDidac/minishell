@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 20:19:00 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/29 23:47:15 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:57:07 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ void	free_shell(t_shell *shell)
 {
 	if (!shell)
 		return ;
-	free(shell->prompt);
+	if (shell->prompt)
+	{
+		free(shell->prompt);
+		shell->prompt = NULL;
+	}
 }
 
 static void	clear_tokens(t_shell *shell)

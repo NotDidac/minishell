@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/29 22:58:13 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:26:51 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,12 @@ static void minishell_loop(t_shell *shell)
     }
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **envp)
 {
 	t_shell	shell;
 
-	arg_check(argc, argv);
+	(void)envp; // Ignore envp for now
+	arg_check(argc);
 	init_shell(&shell);
 	minishell_loop(&shell);
 	free_shell(&shell);

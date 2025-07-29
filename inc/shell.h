@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/29 23:10:56 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:46:59 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <string.h>
 # include <errno.h>
 # include <limits.h>
+
+# define PATH_MAX 4096
 
 typedef struct s_shell
 {
@@ -55,6 +57,6 @@ void	shell_readline(t_shell *shell);
 
 // error_utils.c
 void	print_error_exit(char *cmd, char *msg);
-void	arg_check(int argc, char **argv);
+void	arg_check(int argc);
 
 #endif

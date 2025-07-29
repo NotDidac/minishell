@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 19:42:08 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/29 20:22:32 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:26:45 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ void	print_error_exit(char *prefix, char *msg)
 	exit(EXIT_FAILURE);
 }
 
-void	arg_check(int argc, char **argv)
+void	arg_check(int argc)
 {
-	(void)argv;
 	if (argc != 1)
 		print_error_exit(NULL, "too many arguments");
 }
