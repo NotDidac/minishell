@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 00:26:51 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 01:40:32 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,29 +38,29 @@
 
 int	g_signal = 0;
 
-static void minishell_loop(t_shell *shell)
+static void	minishell_loop(t_shell *shell)
 {
-    while (true)
-    {
-        // 1. Read input (store in shell->input)
-        shell_readline(shell);
+	while (true)
+	{
+		// 1. Read input (store in shell->input)
+		shell_readline(shell);
 
 		// Exit loop if user requests it or input is NULL (ctrl-D)
 		if (shell->exit_requested || !shell->input)
-			break;
+			break ;
 
-        // 2. Tokenize input into tokens stored in shell
-        lexer(shell);
+		// 2. Tokenize input into tokens stored in shell
+		lexer(shell);
 
-        // 3. Parse tokens into commands stored in shell
-        parser(shell);
+		// 3. Parse tokens into commands stored in shell
+		parser(shell);
 
-        // 4. Execute commands
-        executor(shell);
+		// 4. Execute commands
+		executor(shell);
 
-        // 5. Clear tokens and commands for next iteration
-        clear_shell_state(shell);
-    }
+		// 5. Clear tokens and commands for next iteration
+		clear_shell_state(shell);
+	}
 }
 
 int	main(int argc, char **envp)
@@ -68,10 +68,9 @@ int	main(int argc, char **envp)
 	t_shell	shell;
 
 	(void)envp; // Ignore envp for now
-	arg_check(argc);
+	perform_startup_checks(argc);
 	init_shell(&shell);
 	minishell_loop(&shell);
 	free_shell(&shell);
-
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 00:46:59 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 01:33:46 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct s_shell
 
 }	t_shell;
 
-
 // init.c
 void	init_shell(t_shell *shell);
 
@@ -57,6 +56,6 @@ void	shell_readline(t_shell *shell);
 
 // error_utils.c
 void	print_error_exit(char *cmd, char *msg);
-void	arg_check(int argc);
+void	perform_startup_checks(int argc);
 
 #endif

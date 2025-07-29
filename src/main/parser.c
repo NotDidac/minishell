@@ -6,15 +6,15 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:26:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/29 23:31:30 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 01:36:35 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void parser(t_shell *shell)
+void	parser(t_shell *shell)
 {
-	int i;
+	int	i;
 
 	if (!shell->tokens)
 	{

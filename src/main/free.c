@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 20:19:00 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 00:57:07 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 01:36:08 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	free_shell(t_shell *shell)
 
 static void	clear_tokens(t_shell *shell)
 {
-	char **tmp;
+	char	**tmp;
 
 	if (!shell->tokens)
 		return ;
@@ -41,7 +41,8 @@ static void	clear_tokens(t_shell *shell)
 
 static void	clear_commands(t_shell *shell)
 {
-	char **tmp;
+	char	**tmp;
+
 	if (!shell->commands)
 		return ;
 	tmp = shell->commands;

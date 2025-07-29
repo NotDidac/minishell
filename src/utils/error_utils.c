@@ -6,11 +6,14 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 19:42:08 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 00:26:45 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 01:34:45 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+static void	arg_check(int argc);
+static void	ensure_interactive_mode(void);
 
 void	print_error_exit(char *prefix, char *msg)
 {
@@ -25,8 +28,24 @@ void	print_error_exit(char *prefix, char *msg)
 	exit(EXIT_FAILURE);
 }
 
-void	arg_check(int argc)
+void	perform_startup_checks(int argc)
+{
+	ensure_interactive_mode();
+	arg_check(argc);
+}
+
+static void	arg_check(int argc)
 {
 	if (argc != 1)
 		print_error_exit(NULL, "too many arguments");
+}
+
+static void	ensure_interactive_mode(void)
+{
+	if (!isatty(STDIN_FILENO))
+		print_error_exit(NULL, "Standard input is not a terminal");
+	if (!isatty(STDOUT_FILENO))
+		print_error_exit(NULL, "Standard output is not a terminal");
+	if (!isatty(STDERR_FILENO))
+		print_error_exit(NULL, "Standard error is not a terminal");
 }

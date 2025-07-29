@@ -6,13 +6,13 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:31:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/29 23:32:47 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 01:37:20 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static void execute_command(char *command)
+static void	execute_command(char *command)
 {
 	// Here you would implement the logic to execute a single command
 	// For now, we will just print the command to simulate execution
@@ -20,9 +20,9 @@ static void execute_command(char *command)
 	// In a real shell, you would use execve or similar functions here
 }
 
-void executor(t_shell *shell)
+void	executor(t_shell *shell)
 {
-	int i;
+	int	i;
 
 	if (!shell->commands)
 		return ;
