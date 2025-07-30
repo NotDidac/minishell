@@ -6,47 +6,64 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/07/30 20:48:40 by didguill         ###   ########.fr        #
+#    Updated: 2025/07/30 22:20:15 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ------------------------- #
 #         COLORS            #
 # ------------------------- #
-DEF_COLOR       = \033[0;39m
-RED             = \033[0;91m
-GREEN           = \033[0;92m
-YELLOW          = \033[0;93m
-MAGENTA         = \033[0;95m
-CYAN            = \033[0;96m
+DEF_COLOR	= \033[0;39m
+RED			= \033[0;91m
+GREEN		= \033[0;92m
+YELLOW		= \033[0;93m
+MAGENTA		= \033[0;95m
+CYAN		= \033[0;96m
 
 # ------------------------- #
 #         VARIABLES         #
 # ------------------------- #
 
-NAME			= minishell
+NAME	= minishell
 
 # Directories
-SRC_DIR			= src/
-SRC_MAIN_DIR	= $(SRC_DIR)main/
-SRC_UTILS_DIR	= $(SRC_DIR)utils/
-OBJ_DIR			= $(SRC_DIR)obj/
-INC_DIR			= inc/
+SRC_DIR				= src/
+
+SRC_MAIN_DIR		= main/
+SRC_READLINE_DIR	= readline/
+SRC_LEXER_DIR		= lexer/
+SRC_PARSER_DIR		= parser/
+SRC_EXECUTOR_DIR	= executor/
+SRC_BUILTINS_DIR	= builtins/
+SRC_UTILS_DIR		= utils/
+
+OBJ_DIR				= .obj/
+INC_DIR				= inc/
 
 # Libft
-LIBFT_DIR		= libft/
-LIBFT_INC		= $(LIBFT_DIR)inc/
-LIBFT_A			= $(LIBFT_DIR)libft.a
+LIBFT_DIR	= libft/
+LIBFT_INC	= $(LIBFT_DIR)inc/
+LIBFT_A		= $(LIBFT_DIR)libft.a
 
 # Source files
-SRC_MAIN	= shell.c init.c readline.c lexer.c operator_handler.c parser.c executor.c free.c
+SRC_MAIN		= main.c init.c free.c
+SRC_READLINE	= readline.c
+SRC_LEXER		= lexer.c operator_handler.c lexer_utils.c
+SRC_PARSER		= parser.c
+SRC_EXECUTOR	= executor.c
+SRC_BUILTINS	= builtins.c
+SRC_UTILS		= error_utils.c utils.c
 
-SRC_UTILS	= lexer_utils.c error_utils.c utils.c
+SRCS			= $(addprefix $(SRC_MAIN_DIR),	   $(SRC_MAIN))     \
+			  	  $(addprefix $(SRC_READLINE_DIR), $(SRC_READLINE)) \
+				  $(addprefix $(SRC_LEXER_DIR),    $(SRC_LEXER))    \
+				  $(addprefix $(SRC_PARSER_DIR),   $(SRC_PARSER))   \
+				  $(addprefix $(SRC_EXECUTOR_DIR), $(SRC_EXECUTOR)) \
+				  $(addprefix $(SRC_BUILTINS_DIR), $(SRC_BUILTINS)) \
+				  $(addprefix $(SRC_UTILS_DIR),    $(SRC_UTILS))
+SRCS			:= $(addprefix $(SRC_DIR), $(SRCS))
 
-SRCS		= $(addprefix $(SRC_MAIN_DIR), $(SRC_MAIN)) \
-			  $(addprefix $(SRC_UTILS_DIR), $(SRC_UTILS))
-
-OBJS 		= $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS))
+OBJS			 = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS))
 
 # Compiler
 CC			= cc

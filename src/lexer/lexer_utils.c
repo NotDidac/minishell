@@ -6,11 +6,11 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 15:42:50 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 20:21:22 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 22:10:18 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "minishell.h"
 
 int	lexer_init(t_shell *shell, char **input, t_token **tokens)
 {

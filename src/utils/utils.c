@@ -6,8 +6,8 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:00:20 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 20:21:14 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 22:11:26 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "minishell.h"

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.h                                            :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 20:52:21 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 22:27:10 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHELL_H
-# define SHELL_H
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
 # include "libft.h"
 # include "token.h"
@@ -24,7 +24,7 @@
 # include <limits.h>
 
 # define PATH_MAX		4096
-# define debug_mode		true
+# define DEBUG_MODE		true
 
 typedef struct s_shell
 {
@@ -46,7 +46,7 @@ void	shell_readline(t_shell *shell);
 void	lexer(t_shell *shell);
 
 // operator_handler.c
-int	handle_operator(t_shell *shell, char *input, int i, t_token **tokens);
+int		handle_operator(t_shell *shell, char *input, int i, t_token **tokens);
 
 // parser.c
 void	parser(t_shell *shell);
@@ -60,7 +60,7 @@ void	free_shell(t_shell *shell);
 // utils.c
 
 // lexer_utils.c
-int	lexer_init(t_shell *shell, char **input, t_token **tokens);
+int		lexer_init(t_shell *shell, char **input, t_token **tokens);
 t_token	*new_token(t_token_type type, char *value);
 void	add_token(t_token **head, t_token *new);
 bool	is_operator(char c);

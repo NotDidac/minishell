@@ -6,11 +6,11 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 20:19:00 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 18:56:57 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 22:10:36 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "minishell.h"
 
 static void	clear_tokens(t_shell *shell);
 static void	clear_commands(t_shell *shell);

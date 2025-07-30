@@ -6,11 +6,11 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 14:57:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 18:48:08 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 22:27:34 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "minishell.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 
@@ -61,7 +61,7 @@ void	shell_readline(t_shell *shell)
 		shell->input = NULL;
 		return ;
 	}
-	if (debug_mode)
+	if (DEBUG_MODE)
 		printf("DEBUG: Readline input: '%s'\n", line);
 	shell->input = line;
 }

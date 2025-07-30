@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:10:59 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 20:53:30 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 22:10:24 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "minishell.h"
 
 static void	lexer_process(t_shell *shell, char *input, t_token **tokens);
 static int	handle_quote(t_shell *shell, char *input, int i, t_token **tokens);
