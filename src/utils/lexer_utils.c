@@ -1,0 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/30 15:42:50 by didguill          #+#    #+#             */
+/*   Updated: 2025/07/30 15:43:38 by didguill         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "shell.h"
+
+t_token *new_token(t_token_type type, char *value)
+{
+	t_token *token;
+
+	token = malloc(sizeof(t_token));
+	if (!token)
+		return (NULL);
+	token->type = type;
+	token->value = value;
+	token->next = NULL;
+	return (token);
+}
+
+void add_token(t_token **head, t_token *new)
+{
+	t_token *cur;
+
+	if (!*head)
+		*head = new;
+	else
+	{
+		cur = *head;
+		while (cur->next)
+			cur = cur->next;
+		cur->next = new;
+	}
+}

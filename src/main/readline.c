@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 14:57:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 14:58:01 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 15:22:24 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,8 @@ void	shell_readline(t_shell *shell)
 		shell->input = NULL;
 		return ;
 	}
+	#ifdef DEBUG
+	printf("DEBUG: Readline input: '%s'\n", line);
+	#endif
 	shell->input = line;
 }
