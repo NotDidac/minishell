@@ -6,18 +6,18 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:00:20 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 16:52:19 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 18:42:01 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-bool is_operator(char c)
+bool	is_operator(char c)
 {
 	return (c == '|' || c == '<' || c == '>');
 }
 
-bool is_quote(char c)
+bool	is_quote(char c)
 {
 	return (c == '\'' || c == '"');
 }

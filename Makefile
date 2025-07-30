@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/07/30 16:12:27 by didguill         ###   ########.fr        #
+#    Updated: 2025/07/30 18:48:23 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,6 @@ MAKEFLAGS	+= --no-print-directory
 
 all: $(NAME)
 
-debug: CFLAGS += -g -DDEBUG
 debug: fclean all
 	@echo "$(CYAN)Running $(NAME) with Valgrind...$(DEF_COLOR)"
 	@valgrind --leak-check=full --show-leak-kinds=definite --track-origins=yes ./$(NAME)

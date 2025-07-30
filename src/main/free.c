@@ -6,21 +6,23 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 20:19:00 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 10:43:24 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 18:56:57 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
+static void	clear_tokens(t_shell *shell);
+static void	clear_commands(t_shell *shell);
+static void	free_input(t_shell *shell);
+static void	free_prompt(t_shell *shell);
+
 void	free_shell(t_shell *shell)
 {
-	if (!shell)
-		return ;
-	if (shell->prompt)
-	{
-		free(shell->prompt);
-		shell->prompt = NULL;
-	}
+	clear_tokens(shell);
+	clear_commands(shell);
+	free_input(shell);
+	free_prompt(shell);
 }
 
 static void	clear_tokens(t_shell *shell)
@@ -46,7 +48,7 @@ static void	clear_commands(t_shell *shell)
 {
 	char	**tmp;
 
-	if (!shell->commands)
+	if (!shell || !shell->commands)
 		return ;
 	tmp = shell->commands;
 	while (*tmp)
@@ -67,9 +69,13 @@ static void	free_input(t_shell *shell)
 	}
 }
 
-void	clear_shell_state(t_shell *shell)
+static void	free_prompt(t_shell *shell)
 {
-	clear_tokens(shell);
-	clear_commands(shell);
-	free_input(shell);
+	if (!shell)
+		return ;
+	if (shell->prompt)
+	{
+		free(shell->prompt);
+		shell->prompt = NULL;
+	}
 }

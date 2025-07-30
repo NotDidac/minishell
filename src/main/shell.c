@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 10:26:39 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 18:55:47 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,10 @@ static void	minishell_loop(t_shell *shell)
 		shell_readline(shell);
 		if (shell->exit_requested)
 			break ;
-
-		// 2. Tokenize input into tokens stored in shell
 		lexer(shell);
-
-		// 3. Parse tokens into commands stored in shell
 		parser(shell);
-
-		// 4. Execute commands
 		executor(shell);
-
-		// 5. Clear tokens and commands for next iteration
-		clear_shell_state(shell);
+		free_shell(shell);
 	}
 }
 

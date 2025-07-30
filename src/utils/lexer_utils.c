@@ -6,15 +6,15 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 15:42:50 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 15:43:38 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 18:41:49 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_token *new_token(t_token_type type, char *value)
+t_token	*new_token(t_token_type type, char *value)
 {
-	t_token *token;
+	t_token	*token;
 
 	token = malloc(sizeof(t_token));
 	if (!token)
@@ -25,10 +25,12 @@ t_token *new_token(t_token_type type, char *value)
 	return (token);
 }
 
-void add_token(t_token **head, t_token *new)
+void	add_token(t_token **head, t_token *new)
 {
-	t_token *cur;
+	t_token	*cur;
 
+	if (!new)
+		err_exit(NULL, "lexer", "Attempted to add a NULL token");
 	if (!*head)
 		*head = new;
 	else

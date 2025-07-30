@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 16:52:31 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 18:57:08 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # include <errno.h>
 # include <limits.h>
 
-# define PATH_MAX 4096
+# define PATH_MAX		4096
+# define debug_mode		true
 
 typedef struct s_shell
 {
@@ -52,7 +53,6 @@ void	executor(t_shell *shell);
 
 // free.c
 void	free_shell(t_shell *shell);
-void	clear_shell_state(t_shell *shell);
 
 // utils.c
 bool	is_operator(char c);
@@ -63,7 +63,7 @@ t_token	*new_token(t_token_type type, char *value);
 void	add_token(t_token **head, t_token *new);
 
 // error_utils.c
-void	print_error_exit(char *cmd, char *msg);
+void	err_exit(t_shell *shell, char *prefix, char *msg);
 void	perform_startup_checks(int argc);
 
 #endif

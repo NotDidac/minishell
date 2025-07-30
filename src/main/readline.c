@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 14:57:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 15:22:24 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 18:48:08 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ static void	update_prompt(t_shell *shell)
 	{
 		tmp = ft_strjoin("[", cwd);
 		if (!tmp)
-			print_error_exit("utils", "Failed to allocate memory for prompt");
+			err_exit(shell, "utils", "Failed to allocate memory for prompt");
 		new_prompt = ft_strjoin(tmp, "] minishell> ");
 		free(tmp);
 		if (!new_prompt)
-			print_error_exit("utils", "Failed to allocate memory for prompt");
+			err_exit(shell, "utils", "Failed to allocate memory for prompt");
 	}
 	else
 	{
 		new_prompt = ft_strdup("minishell> ");
 		if (!new_prompt)
-			print_error_exit("utils", "Failed to allocate memory for prompt");
+			err_exit(shell, "utils", "Failed to allocate memory for prompt");
 	}
 	if (shell->prompt)
 		free(shell->prompt);
@@ -61,8 +61,7 @@ void	shell_readline(t_shell *shell)
 		shell->input = NULL;
 		return ;
 	}
-	#ifdef DEBUG
-	printf("DEBUG: Readline input: '%s'\n", line);
-	#endif
+	if (debug_mode)
+		printf("DEBUG: Readline input: '%s'\n", line);
 	shell->input = line;
 }

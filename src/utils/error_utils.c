@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 19:42:08 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 01:34:45 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 18:57:27 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 static void	arg_check(int argc);
 static void	ensure_interactive_mode(void);
 
-void	print_error_exit(char *prefix, char *msg)
+void	err_exit(t_shell *shell, char *prefix, char *msg)
 {
+	if (shell)
+		free_shell(shell);
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	if (prefix)
 	{
@@ -37,15 +39,15 @@ void	perform_startup_checks(int argc)
 static void	arg_check(int argc)
 {
 	if (argc != 1)
-		print_error_exit(NULL, "too many arguments");
+		err_exit(NULL, NULL, "No arguments expected");
 }
 
 static void	ensure_interactive_mode(void)
 {
 	if (!isatty(STDIN_FILENO))
-		print_error_exit(NULL, "Standard input is not a terminal");
+		err_exit(NULL, NULL, "Standard input is not a terminal");
 	if (!isatty(STDOUT_FILENO))
-		print_error_exit(NULL, "Standard output is not a terminal");
+		err_exit(NULL, NULL, "Standard output is not a terminal");
 	if (!isatty(STDERR_FILENO))
-		print_error_exit(NULL, "Standard error is not a terminal");
+		err_exit(NULL, NULL, "Standard error is not a terminal");
 }
