@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:10:59 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 16:08:19 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 16:53:12 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	lexer(t_shell *shell)
 	i = 0;
 	while (input[i])
 	{
-		if (is_whitespace(input[i]))
+		if (ft_isspace(input[i]))
 			i++;
 		else if (is_operator(input[i]))
 			i = handle_operator(input, i, &tokens) + 1;
@@ -110,7 +110,7 @@ static int handle_word(const char *input, int i, t_token **tokens)
 	char	*word;
 
 	start = i;
-	while (input[i] && !is_whitespace(input[i]) && !is_operator(input[i])
+	while (input[i] && !ft_isspace(input[i]) && !is_operator(input[i])
 		&& !is_quote(input[i]))
 		i++;
 	word = ft_strndup(&input[start], i - start);

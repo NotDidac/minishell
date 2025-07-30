@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: didguill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 10:45:22 by didguill          #+#    #+#             */
-/*   Updated: 2024/12/23 19:08:38 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 16:27:24 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,12 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+/* ************************************************************************** */
+/*                                  (Extra)                                   */
+/* ************************************************************************** */
+
+char	*ft_strndup(const char *str, size_t max_len);
+int		ft_isspace(int c);
 
 #endif
