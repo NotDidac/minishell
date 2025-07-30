@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 01:33:46 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 10:37:59 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SHELL_H
 
 # include "libft.h"
+# include "token.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -28,11 +29,10 @@ typedef struct s_shell
 {
 	char	*prompt;
 	char	*input;
-	char	**tokens;
+	t_token	*tokens;
 	char	**commands;
 
 	bool	exit_requested;
-
 }	t_shell;
 
 // init.c

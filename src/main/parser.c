@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:26:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 01:36:35 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 10:54:43 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,18 @@
 
 void	parser(t_shell *shell)
 {
-	int	i;
-
 	if (!shell->tokens)
 	{
+		printf("No tokens to parse.\n");
 		shell->commands = NULL;
 		return ;
 	}
-	i = 0;
-	while (shell->tokens[i])
-		i++;
-	shell->commands = malloc(sizeof(char *) * (i + 1));
-	if (!shell->commands)
-		print_error_exit("parser", "Failed to allocate memory for commands");
-	i = 0;
-	while (shell->tokens[i])
+	printf("Parsing tokens...\n\n");
+	// For now, just print the tokens
+	t_token *token = shell->tokens;
+	while (token)
 	{
-		shell->commands[i] = ft_strdup(shell->tokens[i]);
-		if (!shell->commands[i])
-			print_error_exit("parser", "Failed to duplicate token");
-		i++;
+		printf("Token: %-15s Type: %d\n", token->value, token->type);
+		token = token->next;
 	}
-	shell->commands[i] = NULL;
 }

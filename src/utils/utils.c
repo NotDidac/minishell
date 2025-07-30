@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:00:20 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 01:35:31 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 10:30:06 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,11 @@ void	shell_readline(t_shell *shell)
 	}
 	if (*line != '\0')
 		add_history(line);
+	else
+	{
+		free(line);
+		shell->input = NULL;
+		return ;
+	}
 	shell->input = line;
 }

@@ -6,10 +6,12 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 01:40:32 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 10:26:39 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* ************************************************************************** */
+/*                                                                            */
 /*   Project: Minishell                                                       */
 /*   Description: Implementation of a simplified shell in C                   */
 /*                                                                            */
@@ -42,11 +44,8 @@ static void	minishell_loop(t_shell *shell)
 {
 	while (true)
 	{
-		// 1. Read input (store in shell->input)
 		shell_readline(shell);
-
-		// Exit loop if user requests it or input is NULL (ctrl-D)
-		if (shell->exit_requested || !shell->input)
+		if (shell->exit_requested)
 			break ;
 
 		// 2. Tokenize input into tokens stored in shell

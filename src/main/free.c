@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 20:19:00 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 01:36:08 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 10:43:24 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,20 @@ void	free_shell(t_shell *shell)
 
 static void	clear_tokens(t_shell *shell)
 {
-	char	**tmp;
+	t_token	*current;
+	t_token	*next;
 
 	if (!shell->tokens)
 		return ;
-	tmp = shell->tokens;
-	while (*tmp)
+	current = shell->tokens;
+	while (current)
 	{
-		free(*tmp);
-		tmp++;
+		next = current->next;
+		if (current->value)
+			free(current->value);
+		free(current);
+		current = next;
 	}
-	free(shell->tokens);
 	shell->tokens = NULL;
 }
 
