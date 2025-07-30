@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:10:59 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 10:48:15 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 14:52:08 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,16 +113,18 @@ static int handle_word(const char *input, int i, t_token **tokens)
 
 void	lexer(t_shell *shell)
 {
-	int		i = 0;
-	char	*input = shell->input;
-	t_token	*tokens = NULL;
+	int		i;
+	char	*input;
+	t_token	*tokens;
 
+	input = shell->input;
+	tokens = NULL;
 	if (!input)
 	{
-		printf("No input to tokenize.\n");
 		shell->tokens = NULL;
 		return ;
 	}
+	i = 0;
 	while (input[i])
 	{
 		if (is_whitespace(input[i]))

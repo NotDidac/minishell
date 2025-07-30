@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/07/30 09:41:24 by didguill         ###   ########.fr        #
+#    Updated: 2025/07/30 14:58:26 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ LIBFT_INC		= $(LIBFT_DIR)inc/
 LIBFT_A			= $(LIBFT_DIR)libft.a
 
 # Source files
-SRC_MAIN	= shell.c init.c lexer.c parser.c executor.c free.c
+SRC_MAIN	= shell.c init.c readline.c lexer.c parser.c executor.c free.c
 
 SRC_UTILS	= error_utils.c utils.c
 

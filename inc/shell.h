@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 10:37:59 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 14:58:17 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ typedef struct s_shell
 // init.c
 void	init_shell(t_shell *shell);
 
+// readline.c
+void	shell_readline(t_shell *shell);
+
 // lexer.c
 void	lexer(t_shell *shell);
 
@@ -52,7 +55,6 @@ void	free_shell(t_shell *shell);
 void	clear_shell_state(t_shell *shell);
 
 // utils.c
-void	shell_readline(t_shell *shell);
 
 // error_utils.c
 void	print_error_exit(char *cmd, char *msg);
