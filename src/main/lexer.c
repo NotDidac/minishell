@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:10:59 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 18:59:37 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 20:53:30 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,81 +26,37 @@
 
 #include "shell.h"
 
-static int	handle_operator(t_shell *shell, char *input, int i,
-				t_token **tokens);
+static void	lexer_process(t_shell *shell, char *input, t_token **tokens);
 static int	handle_quote(t_shell *shell, char *input, int i, t_token **tokens);
 static int	handle_word(t_shell *shell, char *input, int i, t_token **tokens);
 
 void	lexer(t_shell *shell)
 {
-	int		i;
-	int		end_index;
 	char	*input;
 	t_token	*tokens;
 
-	input = shell->input;
-	tokens = NULL;
-	if (!input)
-	{
-		shell->tokens = NULL;
+	if (!lexer_init(shell, &input, &tokens))
 		return ;
-	}
+	lexer_process(shell, input, &tokens);
+	shell->tokens = tokens;
+}
+
+static void	lexer_process(t_shell *shell, char *input, t_token **tokens)
+{
+	int		i;
+
 	i = 0;
 	while (input[i])
 	{
 		if (ft_isspace(input[i]))
 			i++;
 		else if (is_operator(input[i]))
-			i = handle_operator(shell, input, i, &tokens) + 1;
+			i = handle_operator(shell, input, i, tokens);
 		else if (is_quote(input[i]))
-		{
-			end_index = handle_quote(shell, input, i, &tokens);
-			i = end_index + 1;
-		}
+			i = handle_quote(shell, input, i, tokens);
 		else
-			i = handle_word(shell, input, i, &tokens);
+			i = handle_word(shell, input, i, tokens);
 	}
-	shell->tokens = tokens;
-}
-
-static int	handle_operator(t_shell *shell, char *input, int i,
-	t_token **tokens)
-{
-	t_token			*token;
-	t_token_type	type;
-	char			*value;
-
-	value = NULL;
-	if (input[i] == '|' && (value = ft_strdup("|")))
-		type = TOKEN_PIPE;
-	else if (input[i] == '<' && input[i + 1] && input[i + 1] == '<'
-		&& (value = ft_strdup("<<")))
-	{
-		type = TOKEN_HEREDOC;
-		i++;
-	}
-	else if (input[i] == '>' && input[i + 1] && input[i + 1] == '>'
-		&& (value = ft_strdup(">>")))
-	{
-		type = TOKEN_REDIRECT_APPEND;
-		i++;
-	}
-	else if (input[i] == '<' && (value = ft_strdup("<")))
-		type = TOKEN_REDIRECT_IN;
-	else if (input[i] == '>' && (value = ft_strdup(">")))
-		type = TOKEN_REDIRECT_OUT;
-	else
-		err_exit(shell, "lexer", "Invalid operator");
-	if (!value)
-		err_exit(shell, "lexer", "Failed to allocate memory for token");
-	token = new_token(type, value);
-	if (!token)
-	{
-		free(value);
-		err_exit(shell, "lexer", "Memory allocation failed for token");
-	}
-	add_token(tokens, token);
-	return (i);
 }
 
 static int	handle_quote(t_shell *shell, char *input, int i, t_token **tokens)
@@ -118,15 +74,15 @@ static int	handle_quote(t_shell *shell, char *input, int i, t_token **tokens)
 		err_exit(shell, "lexer", "Unclosed quote");
 	content = ft_strndup(&input[start], i - start);
 	if (!content)
-		err_exit(shell, "lexer", "Memory allocation failed for quoted token");
+		err_exit(shell, "lexer", "Failed to allocate memory for quoted token");
 	token = new_token(TOKEN_STRING, content);
 	if (!token)
 	{
 		free(content);
-		err_exit(shell, "lexer", "Memory allocation failed for token");
+		err_exit(shell, "lexer", "Failed to create token for quoted string");
 	}
 	add_token(tokens, token);
-	return (i);
+	return (i + 1);
 }
 
 static int	handle_word(t_shell *shell, char *input, int i, t_token **tokens)
@@ -141,12 +97,12 @@ static int	handle_word(t_shell *shell, char *input, int i, t_token **tokens)
 		i++;
 	word = ft_strndup(&input[start], i - start);
 	if (!word)
-		err_exit(shell, "lexer", "Memory allocation failed for word token");
+		err_exit(shell, "lexer", "Failed to allocate memory for word token");
 	token = new_token(TOKEN_WORD, word);
 	if (!token)
 	{
 		free(word);
-		err_exit(shell, "lexer", "Memory allocation failed for token");
+		err_exit(shell, "lexer", "Failed to create token for word");
 	}
 	add_token(tokens, token);
 	return (i);

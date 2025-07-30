@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 10:13:19 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 10:32:52 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 20:55:21 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef enum e_token_type
 	TOKEN_REDIRECT_OUT,			// >
 	TOKEN_REDIRECT_APPEND,		// >>
 	TOKEN_HEREDOC,				// <<
+	TOKEN_INVALID				// Invalid token (e.g., unrecognized operator)
 }	t_token_type;
 
 typedef struct s_token

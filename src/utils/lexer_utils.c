@@ -6,11 +6,23 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 15:42:50 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 18:41:49 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 20:21:22 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+int	lexer_init(t_shell *shell, char **input, t_token **tokens)
+{
+	*input = shell->input;
+	*tokens = NULL;
+	if (!*input)
+	{
+		shell->tokens = NULL;
+		return (0);
+	}
+	return (1);
+}
 
 t_token	*new_token(t_token_type type, char *value)
 {
@@ -40,4 +52,14 @@ void	add_token(t_token **head, t_token *new)
 			cur = cur->next;
 		cur->next = new;
 	}
+}
+
+bool	is_operator(char c)
+{
+	return (c == '|' || c == '<' || c == '>');
+}
+
+bool	is_quote(char c)
+{
+	return (c == '\'' || c == '"');
 }
