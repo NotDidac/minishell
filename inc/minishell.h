@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 22:27:10 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 23:15:57 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "token.h"
+# include "colors.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -24,7 +25,7 @@
 # include <limits.h>
 
 # define PATH_MAX		4096
-# define DEBUG_MODE		true
+# define ENABLE_LOGS	true
 
 typedef struct s_shell
 {
@@ -69,5 +70,9 @@ bool	is_quote(char c);
 // error_utils.c
 void	err_exit(t_shell *shell, char *prefix, char *msg);
 void	perform_startup_checks(int argc);
+
+// print_logs.c
+void	readline_log(const char *line);
+void	lexer_log(t_token *tokens);
 
 #endif

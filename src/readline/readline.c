@@ -6,13 +6,39 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 14:57:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 22:27:34 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 23:02:14 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <readline/readline.h>
 #include <readline/history.h>
+
+static void	update_prompt(t_shell *shell);
+
+void	shell_readline(t_shell *shell)
+{
+	char	*line;
+
+	update_prompt(shell);
+	line = readline(shell->prompt);
+	if (!line)
+	{
+		shell->exit_requested = true;
+		shell->input = NULL;
+		return ;
+	}
+	if (*line != '\0')
+		add_history(line);
+	else
+	{
+		free(line);
+		shell->input = NULL;
+		return ;
+	}
+	readline_log(line);
+	shell->input = line;
+}
 
 static void	update_prompt(t_shell *shell)
 {
@@ -39,29 +65,4 @@ static void	update_prompt(t_shell *shell)
 	if (shell->prompt)
 		free(shell->prompt);
 	shell->prompt = new_prompt;
-}
-
-void	shell_readline(t_shell *shell)
-{
-	char	*line;
-
-	update_prompt(shell);
-	line = readline(shell->prompt);
-	if (!line)
-	{
-		shell->exit_requested = true;
-		shell->input = NULL;
-		return ;
-	}
-	if (*line != '\0')
-		add_history(line);
-	else
-	{
-		free(line);
-		shell->input = NULL;
-		return ;
-	}
-	if (DEBUG_MODE)
-		printf("DEBUG: Readline input: '%s'\n", line);
-	shell->input = line;
 }

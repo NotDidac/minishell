@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executor.c                                         :+:      :+:    :+:   */
+/*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/29 23:31:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 23:13:37 by didguill         ###   ########.fr       */
+/*   Created: 2025/07/30 23:16:06 by didguill          #+#    #+#             */
+/*   Updated: 2025/07/30 23:25:11 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef COLORS_H
+# define COLORS_H
 
-static void	execute_command(char *command)
-{
-	printf("Executing command: %s\n", command);
-}
+#define RESET    "\033[0m"
+#define RED      "\033[0;91m"
+#define GREEN    "\033[0;92m"
+#define YELLOW   "\033[0;93m"
+#define BLUE     "\033[0;94m"
+#define MAGENTA  "\033[0;95m"
+#define CYAN     "\033[0;96m"
+#define GRAY     "\033[0;90m"
+#define BOLD     "\033[1m"
 
-void	executor(t_shell *shell)
-{
-	int	i;
-
-	if (!shell->commands)
-	{
-		printf("\nNo commands to execute.\n");
-		return ;
-	}
-	i = 0;
-	while (shell->commands[i])
-	{
-		execute_command(shell->commands[i]);
-		i++;
-	}
-}
+# endif

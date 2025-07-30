@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:10:59 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 22:10:24 by didguill         ###   ########.fr       */
+/*   Updated: 2025/07/30 23:10:55 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 static void	lexer_process(t_shell *shell, char *input, t_token **tokens);
 static int	handle_quote(t_shell *shell, char *input, int i, t_token **tokens);
 static int	handle_word(t_shell *shell, char *input, int i, t_token **tokens);
+static void	handle_word_error(t_shell *shell, char *word, char *msg);
 
 void	lexer(t_shell *shell)
 {
@@ -38,6 +39,7 @@ void	lexer(t_shell *shell)
 	if (!lexer_init(shell, &input, &tokens))
 		return ;
 	lexer_process(shell, input, &tokens);
+	lexer_log(tokens);
 	shell->tokens = tokens;
 }
 
@@ -100,10 +102,13 @@ static int	handle_word(t_shell *shell, char *input, int i, t_token **tokens)
 		err_exit(shell, "lexer", "Failed to allocate memory for word token");
 	token = new_token(TOKEN_WORD, word);
 	if (!token)
-	{
-		free(word);
-		err_exit(shell, "lexer", "Failed to create token for word");
-	}
+		handle_word_error(shell, word, "Failed to create token for word");
 	add_token(tokens, token);
 	return (i);
+}
+
+static void	handle_word_error(t_shell *shell, char *word, char *msg)
+{
+	free(word);
+	err_exit(shell, "lexer", msg);
 }

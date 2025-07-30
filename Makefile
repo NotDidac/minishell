@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/07/30 22:20:15 by didguill         ###   ########.fr        #
+#    Updated: 2025/07/30 23:09:27 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ SRC_LEXER		= lexer.c operator_handler.c lexer_utils.c
 SRC_PARSER		= parser.c
 SRC_EXECUTOR	= executor.c
 SRC_BUILTINS	= builtins.c
-SRC_UTILS		= error_utils.c utils.c
+SRC_UTILS		= error_utils.c utils.c print_logs.c
 
 SRCS			= $(addprefix $(SRC_MAIN_DIR),	   $(SRC_MAIN))     \
 			  	  $(addprefix $(SRC_READLINE_DIR), $(SRC_READLINE)) \
