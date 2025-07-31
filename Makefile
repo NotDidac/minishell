@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/07/30 23:09:27 by didguill         ###   ########.fr        #
+#    Updated: 2025/07/31 10:18:38 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRC_EXECUTOR_DIR	= executor/
 SRC_BUILTINS_DIR	= builtins/
 SRC_UTILS_DIR		= utils/
 
-OBJ_DIR				= .obj/
+OBJ_DIR				= build/
 INC_DIR				= inc/
 
 # Libft
@@ -82,7 +82,6 @@ all: $(NAME)
 debug: fclean all
 	@echo "$(CYAN)Running $(NAME) with Valgrind...$(DEF_COLOR)"
 	@valgrind --leak-check=full --show-leak-kinds=definite --track-origins=yes ./$(NAME)
-	@echo "$(GREEN)Valgrind run complete. See valgrind.log for details.$(DEF_COLOR)"
 
 $(NAME): $(LIBFT_A) $(OBJS)
 	@echo -n "$(CYAN)Linking $(NAME)... $(DEF_COLOR)"
