@@ -6,16 +6,11 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:31:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/31 16:35:17 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/01 22:36:39 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	execute_command(char *command)
-{
-	printf("Executing command: %s\n", command);
-}
 
 void	executor(t_shell *shell)
 {
@@ -24,9 +19,5 @@ void	executor(t_shell *shell)
 		printf("\nNo commands to execute.\n");
 		return ;
 	}
-	while (shell->commands)
-	{
-		execute_command(shell->commands->args[0]);
-		shell->commands = shell->commands->next;
-	}
+	printf(BLUE "[Executor] " RESET "Executing commands...\n");
 }

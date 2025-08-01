@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:26:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/01 20:30:14 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/01 22:35:06 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 #include "minishell.h"
 
 static t_command	*parse_tokens(t_shell *shell);
+static void	parse_command_arguments(t_shell *shell, t_command **cmd, t_token **curr);
+static void	parse_command_redirections(t_shell *shell, t_command **cmd, t_token **curr);
 
 void	parser(t_shell *shell)
 {
@@ -36,31 +38,59 @@ void	parser(t_shell *shell)
 	}
 	shell->commands = parse_tokens(shell);
 	parser_log(shell->commands);
-	clear_commands(shell);
 }
 
 static t_command	*parse_tokens(t_shell *shell)
 {
+	t_command	*head;
 	t_command	*cmd;
+	t_token		*curr;
+	bool		is_pipe;
 
-	cmd = malloc(sizeof(t_command));
-	if (!cmd)
-		err_exit(shell, "parser", "Failed to allocate memory for command");
-	cmd->args = malloc(sizeof(char *) * 3);
-	if (!cmd->args)
-		err_exit(shell, "parser", "Failed to allocate memory for command args");
-	cmd->args[0] = ft_strdup("ls");
-	if (!cmd->args[0])
-		err_exit(shell, "parser", "Failed to allocate memory for command arg");
-	cmd->args[1] = ft_strdup("-la");
-	if (!cmd->args[1])
-		err_exit(shell, "parser", "Failed to allocate memory for command arg");
-	cmd->args[2] = NULL;
-	cmd->input_file = NULL;
-	cmd->output_file = ft_strdup("output.txt");
-	if (!cmd->output_file)
-		err_exit(shell, "parser", "Failed to allocate memory for output file");
-	cmd->is_pipe = true;
-	cmd->next = NULL;
-	return (cmd);
+	head = NULL;
+	cmd = NULL;
+	curr = shell->tokens;
+	while (curr)
+	{
+		if (!cmd)
+			cmd = new_command(shell);
+		parse_command_arguments(shell, &cmd, &curr);
+		parse_command_redirections(shell, &cmd, &curr);
+		is_pipe = parse_pipe(&curr);
+		cmd->is_pipe = is_pipe;
+		append_command(&head, &cmd);
+		if (!is_pipe)
+			break ;
+	}
+	return (head);
+}
+
+// Gather all arguments (TOKEN_WORD, TOKEN_STRING) for the current command
+static void	parse_command_arguments(t_shell *shell, t_command **cmd, t_token **curr)
+{
+	(void)shell;
+	(void)cmd;
+	if (*curr && ((*curr)->type == TOKEN_WORD || (*curr)->type == TOKEN_STRING))
+	{
+		// Here you would typically add the argument to cmd->args
+		*curr = (*curr)->next;
+	}
+}
+
+// Check for redirection tokens '<' '<<' '>' '>>' and set input/output files accordingly
+static void	parse_command_redirections(t_shell *shell, t_command **cmd, t_token **curr)
+{
+	(void)shell;
+	(void)cmd;
+	while (*curr && ((*curr)->type == TOKEN_REDIRECT_IN ||
+			(*curr)->type == TOKEN_REDIRECT_OUT ||
+			(*curr)->type == TOKEN_REDIRECT_APPEND ||
+			(*curr)->type == TOKEN_HEREDOC))
+	{
+		// Here you would typically set the input/output files in cmd
+		*curr = (*curr)->next;
+		if (*curr)
+			*curr = (*curr)->next;
+	}
+
 }
