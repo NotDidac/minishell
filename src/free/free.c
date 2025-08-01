@@ -6,16 +6,15 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 20:19:00 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 22:10:36 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/01 20:10:49 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	clear_tokens(t_shell *shell);
-static void	clear_commands(t_shell *shell);
 static void	free_input(t_shell *shell);
 static void	free_prompt(t_shell *shell);
+static void	clear_tokens(t_shell *shell);
 
 void	free_shell(t_shell *shell)
 {
@@ -42,22 +41,6 @@ static void	clear_tokens(t_shell *shell)
 		current = next;
 	}
 	shell->tokens = NULL;
-}
-
-static void	clear_commands(t_shell *shell)
-{
-	char	**tmp;
-
-	if (!shell || !shell->commands)
-		return ;
-	tmp = shell->commands;
-	while (*tmp)
-	{
-		free(*tmp);
-		tmp++;
-	}
-	free(shell->commands);
-	shell->commands = NULL;
 }
 
 static void	free_input(t_shell *shell)

@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 22:10:47 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/01 20:08:45 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,9 @@ int	g_signal = 0;
 
 static void	minishell_loop(t_shell *shell)
 {
-	while (true)
+	while (!shell->exit_requested)
 	{
 		shell_readline(shell);
-		if (shell->exit_requested)
-			break ;
 		lexer(shell);
 		parser(shell);
 		executor(shell);
@@ -58,7 +56,7 @@ int	main(int argc, char **envp)
 {
 	t_shell	shell;
 
-	(void)envp; // Ignore envp for now
+	(void)envp;
 	perform_startup_checks(argc);
 	init_shell(&shell);
 	minishell_loop(&shell);

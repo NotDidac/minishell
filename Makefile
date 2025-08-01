@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/07/31 10:18:38 by didguill         ###   ########.fr        #
+#    Updated: 2025/08/01 19:26:26 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,13 +29,13 @@ NAME	= minishell
 # Directories
 SRC_DIR				= src/
 
-SRC_MAIN_DIR		= main/
-SRC_READLINE_DIR	= readline/
 SRC_LEXER_DIR		= lexer/
 SRC_PARSER_DIR		= parser/
 SRC_EXECUTOR_DIR	= executor/
 SRC_BUILTINS_DIR	= builtins/
 SRC_UTILS_DIR		= utils/
+SRC_FREE_DIR		= free/
+SRC_PRINT_LOG_DIR	= print_logs/
 
 OBJ_DIR				= build/
 INC_DIR				= inc/
@@ -46,21 +46,24 @@ LIBFT_INC	= $(LIBFT_DIR)inc/
 LIBFT_A		= $(LIBFT_DIR)libft.a
 
 # Source files
-SRC_MAIN		= main.c init.c free.c
-SRC_READLINE	= readline.c
 SRC_LEXER		= lexer.c operator_handler.c lexer_utils.c
-SRC_PARSER		= parser.c
+SRC_PARSER		= parser.c parser_utils.c
 SRC_EXECUTOR	= executor.c
 SRC_BUILTINS	= builtins.c
-SRC_UTILS		= error_utils.c utils.c print_logs.c
+SRC_UTILS		= init.c error_utils.c utils.c
+SRC_FREE		= free.c clear_commands.c
+SRC_PARSER_LOG	= print_logs.c parser_log.c
 
-SRCS			= $(addprefix $(SRC_MAIN_DIR),	   $(SRC_MAIN))     \
-			  	  $(addprefix $(SRC_READLINE_DIR), $(SRC_READLINE)) \
-				  $(addprefix $(SRC_LEXER_DIR),    $(SRC_LEXER))    \
-				  $(addprefix $(SRC_PARSER_DIR),   $(SRC_PARSER))   \
-				  $(addprefix $(SRC_EXECUTOR_DIR), $(SRC_EXECUTOR)) \
-				  $(addprefix $(SRC_BUILTINS_DIR), $(SRC_BUILTINS)) \
-				  $(addprefix $(SRC_UTILS_DIR),    $(SRC_UTILS))
+SRCS			= $(addprefix $(SRC_READLINE_DIR),  $(SRC_READLINE))   \
+				  $(addprefix $(SRC_LEXER_DIR),     $(SRC_LEXER))      \
+				  $(addprefix $(SRC_PARSER_DIR),    $(SRC_PARSER))     \
+				  $(addprefix $(SRC_EXECUTOR_DIR),  $(SRC_EXECUTOR))   \
+				  $(addprefix $(SRC_BUILTINS_DIR),  $(SRC_BUILTINS))   \
+				  $(addprefix $(SRC_UTILS_DIR),     $(SRC_UTILS))      \
+				  $(addprefix $(SRC_FREE_DIR),      $(SRC_FREE))	   \
+				  $(addprefix $(SRC_PRINT_LOG_DIR), $(SRC_PARSER_LOG)) \
+				  main.c readline.c
+
 SRCS			:= $(addprefix $(SRC_DIR), $(SRCS))
 
 OBJS			 = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS))

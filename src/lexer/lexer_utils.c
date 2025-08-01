@@ -6,23 +6,11 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 15:42:50 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 22:10:18 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/01 18:50:09 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	lexer_init(t_shell *shell, char **input, t_token **tokens)
-{
-	*input = shell->input;
-	*tokens = NULL;
-	if (!*input)
-	{
-		shell->tokens = NULL;
-		return (0);
-	}
-	return (1);
-}
 
 t_token	*new_token(t_token_type type, char *value)
 {

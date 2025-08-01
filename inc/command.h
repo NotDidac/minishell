@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   command.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/29 20:17:30 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 22:10:41 by didguill         ###   ########.fr       */
+/*   Created: 2025/07/31 15:56:15 by didguill          #+#    #+#             */
+/*   Updated: 2025/08/01 19:17:11 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef COMMAND_H
+# define COMMAND_H
 
-void	init_shell(t_shell *shell)
+# include <stdbool.h>
+
+typedef struct s_command	t_command;
+
+typedef struct s_command
 {
-	shell->prompt = NULL;
-	shell->input = NULL;
-	shell->tokens = NULL;
-	shell->commands = NULL;
-	shell->exit_requested = false;
-}
+	char		**args;
+	char		*input_file;
+	char		*output_file;
+	bool		is_pipe;
+	t_command	*next;
+}	t_command;
+
+#endif

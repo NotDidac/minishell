@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 23:15:57 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/01 20:09:33 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 
 # include "libft.h"
 # include "token.h"
+# include "command.h"
 # include "colors.h"
+
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <stdbool.h>
 # include <string.h>
 # include <errno.h>
 # include <limits.h>
@@ -29,50 +30,34 @@
 
 typedef struct s_shell
 {
-	char	*prompt;
-	char	*input;
-	t_token	*tokens;
-	char	**commands;
+	char		*prompt;
+	char		*input;
+	t_token		*tokens;
+	t_command	*commands;
 
-	bool	exit_requested;
+	bool		exit_requested;
 }	t_shell;
 
-// init.c
+/* ************************************************************************** */
+/*                            FUNCTION DECLARATIONS                           */
+/* ************************************************************************** */
+
 void	init_shell(t_shell *shell);
-
-// readline.c
-void	shell_readline(t_shell *shell);
-
-// lexer.c
-void	lexer(t_shell *shell);
-
-// operator_handler.c
-int		handle_operator(t_shell *shell, char *input, int i, t_token **tokens);
-
-// parser.c
-void	parser(t_shell *shell);
-
-// executor.c
-void	executor(t_shell *shell);
-
-// free.c
 void	free_shell(t_shell *shell);
-
-// utils.c
-
-// lexer_utils.c
-int		lexer_init(t_shell *shell, char **input, t_token **tokens);
+void	shell_readline(t_shell *shell);
+void	lexer(t_shell *shell);
 t_token	*new_token(t_token_type type, char *value);
 void	add_token(t_token **head, t_token *new);
 bool	is_operator(char c);
 bool	is_quote(char c);
-
-// error_utils.c
+int		handle_operator(t_shell *shell, char *input, int i, t_token **tokens);
+void	parser(t_shell *shell);
+void	executor(t_shell *shell);
 void	err_exit(t_shell *shell, char *prefix, char *msg);
 void	perform_startup_checks(int argc);
-
-// print_logs.c
 void	readline_log(const char *line);
 void	lexer_log(t_token *tokens);
+void	parser_log(t_command *commands);
+void	clear_commands(t_shell *shell);
 
 #endif
