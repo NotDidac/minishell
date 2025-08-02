@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/01 22:31:38 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/02 16:58:58 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@
 # include <string.h>
 # include <errno.h>
 # include <limits.h>
-
-# define PATH_MAX		4096
-# define ENABLE_LOGS	true
 
 typedef struct s_shell
 {

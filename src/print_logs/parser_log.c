@@ -6,11 +6,12 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 19:23:50 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/01 19:59:21 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/02 17:00:14 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "config.h"
 
 static void	print_header(void);
 static void	print_commands(t_command *commands);
