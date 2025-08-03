@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:10:59 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:53:22 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 22:14:36 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,16 @@ static int		handle_quote(t_shell *shell, char *input, int i,
 static int		handle_word(t_shell *shell, char *input, int i,
 					t_token **tokens);
 
-void	lexer(t_shell *shell)
+t_token	*lexer(t_shell *shell)
 {
+	t_token	*tokens;
+
 	if (!shell->input)
-	{
-		shell->tokens = NULL;
-		return ;
-	}
-	shell->tokens = tokenize(shell, shell->input);
-	lexer_log(shell->tokens);
+		return (NULL);
+	tokens = tokenize(shell, shell->input);
+	shell->tokens = tokens;
+	lexer_log(tokens);
+	return (tokens);
 }
 
 static t_token	*tokenize(t_shell *shell, char *input)
