@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 20:45:10 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 20:53:52 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,14 @@ int	g_signal = 0;
 
 static void	minishell_loop(t_shell *shell)
 {
+	t_command	*commands;
+
 	while (!shell->exit_requested)
 	{
 		shell_readline(shell);
 		lexer(shell);
-		parser(shell);
-		executor(shell->commands);
+		commands = parser(shell);
+		executor(commands);
 		free_shell(shell);
 	}
 }

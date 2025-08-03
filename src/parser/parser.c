@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:26:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:56:45 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 20:53:48 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,18 @@ static t_command	*parse_tokens(t_shell *shell);
 static void	parse_command_arguments(t_shell *shell, t_command **cmd, t_token **curr);
 static void	parse_command_redirections(t_shell *shell, t_command **cmd, t_token **curr);
 
-void	parser(t_shell *shell)
+t_command	*parser(t_shell *shell)
 {
+	t_command	*commands;
+
 	if (!shell->tokens)
 	{
 		shell->commands = NULL;
-		return ;
+		return (NULL);
 	}
-	shell->commands = parse_tokens(shell);
-	parser_log(shell->commands);
+	commands = parse_tokens(shell);
+	parser_log(commands);
+	return (commands);
 }
 
 static t_command	*parse_tokens(t_shell *shell)
