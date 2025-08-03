@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/29 20:17:30 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 18:24:44 by didguill         ###   ########.fr       */
+/*   Created: 2025/08/03 18:23:13 by didguill          #+#    #+#             */
+/*   Updated: 2025/08/03 18:24:04 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "shell.h"
+#ifndef SHELL_H
+# define SHELL_H
 
-void	init_shell(t_shell *shell)
+#include "token.h"
+#include "command.h"
+
+typedef struct s_shell
 {
-	shell->prompt = NULL;
-	shell->input = NULL;
-	shell->tokens = NULL;
-	shell->commands = NULL;
-	shell->exit_requested = false;
-}
+	char		*prompt;
+	char		*input;
+	t_token		*tokens;
+	t_command	*commands;
+
+	bool		exit_requested;
+}	t_shell;
+
+#endif

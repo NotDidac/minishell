@@ -6,11 +6,12 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 20:15:57 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 22:10:29 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:25:29 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "shell.h"
 
 static t_token_type	get_operator_type(char *input);
 static int			get_operator_len(t_token_type type);

@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/02 16:58:58 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:26:41 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "token.h"
 # include "command.h"
 # include "colors.h"
+# include "shell.h"
 
 # include <unistd.h>
 # include <stdio.h>
@@ -24,16 +25,6 @@
 # include <string.h>
 # include <errno.h>
 # include <limits.h>
-
-typedef struct s_shell
-{
-	char		*prompt;
-	char		*input;
-	t_token		*tokens;
-	t_command	*commands;
-
-	bool		exit_requested;
-}	t_shell;
 
 /* ************************************************************************** */
 /*                            FUNCTION DECLARATIONS                           */

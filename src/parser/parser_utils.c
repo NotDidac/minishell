@@ -6,11 +6,12 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:46:38 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/01 22:31:15 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:25:19 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "shell.h"
 
 t_command	*new_command(t_shell *shell)
 {

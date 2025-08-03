@@ -6,11 +6,12 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 19:42:08 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 22:11:20 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:24:47 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "shell.h"
 
 static void	arg_check(int argc);
 static void	ensure_interactive_mode(void);

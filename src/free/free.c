@@ -6,11 +6,12 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 20:19:00 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/01 20:10:49 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:25:46 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "shell.h"
 
 static void	free_input(t_shell *shell);
 static void	free_prompt(t_shell *shell);

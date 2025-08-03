@@ -6,11 +6,12 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:29:32 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/01 18:34:02 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:25:51 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "shell.h"
 
 static void	free_args(char **args);
 
