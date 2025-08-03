@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 18:57:38 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 19:01:32 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,7 @@ void		add_token(t_token **head, t_token *new);
 bool		is_operator(char c);
 bool		is_quote(char c);
 int			handle_operator(t_shell *shell, char *input, int i, t_token **tokens);
-void		parser(t_shell *shell);
 void		executor(t_shell *shell);
 void		clear_commands(t_shell *shell);
-t_command	*new_command(t_shell *shell);
-bool		parse_pipe(t_token **curr);
-void		append_command(t_command **head, t_command **cmd);
 
 #endif
