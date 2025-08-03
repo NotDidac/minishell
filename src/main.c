@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:54:49 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 20:45:10 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	minishell_loop(t_shell *shell)
 		shell_readline(shell);
 		lexer(shell);
 		parser(shell);
-		executor(shell);
+		executor(shell->commands);
 		free_shell(shell);
 	}
 }

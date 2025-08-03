@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 19:17:57 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:18:26 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 20:46:31 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "shell.h"
 
-void		executor(t_shell *shell);
+void		executor(t_command *commands);
 
 #endif
