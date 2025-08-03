@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/08/03 18:46:10 by didguill         ###   ########.fr        #
+#    Updated: 2025/08/03 18:52:57 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRC_EXECUTOR_DIR	= executor/
 SRC_BUILTINS_DIR	= builtins/
 SRC_UTILS_DIR		= utils/
 SRC_FREE_DIR		= free/
-SRC_PRINT_LOG_DIR	= print_logs/
+SRC_PRINT_LOGS_DIR	= print_logs/
 
 OBJ_DIR				= build/
 INC_DIR				= inc/
@@ -52,16 +52,16 @@ SRC_EXECUTOR	= executor.c
 SRC_BUILTINS	= builtins.c
 SRC_UTILS		= init.c startup_checks.c err_exit.c
 SRC_FREE		= free.c clear_commands.c
-SRC_PARSER_LOG	= print_logs.c parser_log.c
+SRC_PRINT_LOGS	= lexer_log.c parser_log.c readline_log.c
 
-SRCS			= $(addprefix $(SRC_READLINE_DIR),  $(SRC_READLINE))   \
-				  $(addprefix $(SRC_LEXER_DIR),     $(SRC_LEXER))      \
-				  $(addprefix $(SRC_PARSER_DIR),    $(SRC_PARSER))     \
-				  $(addprefix $(SRC_EXECUTOR_DIR),  $(SRC_EXECUTOR))   \
-				  $(addprefix $(SRC_BUILTINS_DIR),  $(SRC_BUILTINS))   \
-				  $(addprefix $(SRC_UTILS_DIR),     $(SRC_UTILS))      \
-				  $(addprefix $(SRC_FREE_DIR),      $(SRC_FREE))	   \
-				  $(addprefix $(SRC_PRINT_LOG_DIR), $(SRC_PARSER_LOG)) \
+SRCS			= $(addprefix $(SRC_READLINE_DIR),  $(SRC_READLINE))     \
+				  $(addprefix $(SRC_LEXER_DIR),     $(SRC_LEXER))        \
+				  $(addprefix $(SRC_PARSER_DIR),    $(SRC_PARSER))       \
+				  $(addprefix $(SRC_EXECUTOR_DIR),  $(SRC_EXECUTOR))     \
+				  $(addprefix $(SRC_BUILTINS_DIR),  $(SRC_BUILTINS))     \
+				  $(addprefix $(SRC_UTILS_DIR),     $(SRC_UTILS))        \
+				  $(addprefix $(SRC_FREE_DIR),      $(SRC_FREE))	     \
+				  $(addprefix $(SRC_PRINT_LOGS_DIR), $(SRC_PRINT_LOGS))  \
 				  main.c readline.c
 
 SRCS			:= $(addprefix $(SRC_DIR), $(SRCS))
