@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 18:34:24 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:46:25 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 #include "shell.h"
 #include "readline.h"
 #include "utils/init.h"
+#include "utils/startup_checks.h"
 
 int	g_signal = 0;
 

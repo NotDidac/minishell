@@ -6,12 +6,13 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 19:42:08 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 18:39:28 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:45:54 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "shell.h"
+#include "utils/err_exit.h"
 
 static void	arg_check(int argc);
 static void	ensure_interactive_mode(void);

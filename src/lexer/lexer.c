@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:10:59 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 18:25:37 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:44:50 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 #include "minishell.h"
 #include "shell.h"
+#include "utils/err_exit.h"
 
 static t_token	*tokenize(t_shell *shell, char *input);
 static int		handle_quote(t_shell *shell, char *input, int i,

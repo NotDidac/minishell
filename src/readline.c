@@ -6,13 +6,14 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 14:57:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 18:24:23 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:46:40 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "config.h"
 #include "shell.h"
+#include "utils/err_exit.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 
