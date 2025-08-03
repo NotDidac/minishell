@@ -6,12 +6,13 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:46:38 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 22:19:20 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 22:53:21 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
 #include "utils/err_exit.h"
+#include "command.h"
+#include "token.h"
 
 #include <stdlib.h>
 
@@ -21,7 +22,7 @@ t_command	*new_command(void)
 
 	cmd = malloc(sizeof(t_command));
 	if (!cmd)
-		err_exit(NULL, "Parser", "Failed to allocate memory for command");
+		err_exit("Parser", "Failed to allocate memory for command");
 	cmd->args = NULL;
 	cmd->input_file = NULL;
 	cmd->output_file = NULL;

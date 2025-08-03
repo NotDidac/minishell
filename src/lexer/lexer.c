@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:10:59 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 22:32:58 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 22:54:11 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "shell.h"
 #include "print_logs/lexer_log.h"
 #include "utils/err_exit.h"
 #include "lexer/lexer_utils.h"
@@ -79,15 +78,15 @@ static int	handle_quote(char *input, int i, t_token **tokens)
 	while (input[i] && input[i] != quote)
 		i++;
 	if (!input[i])
-		err_exit(NULL, "lexer", "Unclosed quote");
+		err_exit("lexer", "Unclosed quote");
 	content = ft_strndup(&input[start], i - start);
 	if (!content)
-		err_exit(NULL, "lexer", "Failed to allocate memory for quoted token");
+		err_exit("lexer", "Failed to allocate memory for quoted token");
 	token = new_token(TOKEN_STRING, content);
 	if (!token)
 	{
 		free(content);
-		err_exit(NULL, "lexer", "Failed to create token for quoted string");
+		err_exit("lexer", "Failed to create token for quoted string");
 	}
 	add_token(tokens, token);
 	return (i + 1);
@@ -105,10 +104,10 @@ static int	handle_word(char *input, int i, t_token **tokens)
 		i++;
 	word = ft_strndup(&input[start], i - start);
 	if (!word)
-		err_exit(NULL, "lexer", "Failed to allocate memory for word token");
+		err_exit("lexer", "Failed to allocate memory for word token");
 	token = new_token(TOKEN_WORD, word);
 	if (!token)
-		err_exit(NULL, "lexer", "Failed to create token for word");
+		err_exit("lexer", "Failed to create token for word");
 	add_token(tokens, token);
 	return (i);
 }

@@ -6,12 +6,11 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 20:15:57 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 22:31:14 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 22:53:47 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "shell.h"
 #include "utils/err_exit.h"
 #include "lexer/lexer_utils.h"
 
@@ -28,15 +27,15 @@ int	handle_operator(char *input, int i, t_token **tokens)
 	type = get_operator_type(&input[i]);
 	len = get_operator_len(type);
 	if (type == TOKEN_INVALID)
-		err_exit(NULL, "lexer", "Invalid operator");
+		err_exit("lexer", "Invalid operator");
 	str = ft_strndup(&input[i], len);
 	if (!str)
-		err_exit(NULL, "lexer", "Failed to allocate memory for operator");
+		err_exit("lexer", "Failed to allocate memory for operator");
 	token = new_token(type, str);
 	if (!token)
 	{
 		free(str);
-		err_exit(NULL, "lexer", "Failed to create token for operator");
+		err_exit("lexer", "Failed to create token for operator");
 	}
 	add_token(tokens, token);
 	return (i + len);

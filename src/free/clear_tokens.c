@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.h                                             :+:      :+:    :+:   */
+/*   clear_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/03 19:15:26 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:15:53 by didguill         ###   ########.fr       */
+/*   Created: 2025/07/29 20:19:00 by didguill          #+#    #+#             */
+/*   Updated: 2025/08/03 22:59:12 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FREE_H
-# define FREE_H
+#include "free/clear_commands.h"
+#include "token.h"
 
-#include "shell.h"
+#include <stdlib.h>
 
-void		free_shell(t_shell *shell);
+void	clear_tokens(t_token *tokens)
+{
+	t_token	*current;
+	t_token	*next;
 
-#endif
+	if (!tokens)
+		return ;
+	current = tokens;
+	while (current)
+	{
+		next = current->next;
+		if (current->value)
+			free(current->value);
+		free(current);
+		current = next;
+	}
+	tokens = NULL;
+}

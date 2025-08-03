@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 22:41:59 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 22:51:04 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,43 +36,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
 #include "readline.h"
-#include "utils/init.h"
 #include "utils/startup_checks.h"
 #include "parser/parser.h"
 #include "lexer/lexer.h"
-#include "free/free.h"
 #include "executor/executor.h"
+#include "token.h"
+#include "command.h"
 
 #include <stdlib.h>
 
 int	g_signal = 0;
 
-static void	minishell_loop(t_shell *shell)
+static void	minishell_loop(void)
 {
 	t_command	*commands;
 	t_token		*tokens;
 	char		*input;
 
-	while (!shell->exit_requested)
+	while (true)
 	{
 		input = shell_readline();
 		tokens = lexer(input);
 		commands = parser(tokens);
 		executor(commands);
-		free_shell(shell);
 	}
 }
 
 int	main(int argc, char **envp)
 {
-	t_shell	shell;
-
 	(void)envp;
 	perform_startup_checks(argc);
-	init_shell(&shell);
-	minishell_loop(&shell);
-	free_shell(&shell);
+	minishell_loop();
 	return (EXIT_SUCCESS);
 }

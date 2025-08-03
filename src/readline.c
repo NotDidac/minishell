@@ -6,13 +6,12 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 14:57:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 22:41:54 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 22:51:37 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "config.h"
-#include "shell.h"
 #include "utils/err_exit.h"
 #include "print_logs/readline_log.h"
 #include <readline/readline.h>
@@ -50,17 +49,17 @@ static char	*update_prompt(void)
 	{
 		tmp = ft_strjoin("[", cwd);
 		if (!tmp)
-			err_exit(NULL, "utils", "Failed to allocate memory for prompt");
+			err_exit("utils", "Failed to allocate memory for prompt");
 		new_prompt = ft_strjoin(tmp, "] minishell> ");
 		free(tmp);
 		if (!new_prompt)
-			err_exit(NULL, "utils", "Failed to allocate memory for prompt");
+			err_exit("utils", "Failed to allocate memory for prompt");
 	}
 	else
 	{
 		new_prompt = ft_strdup("minishell> ");
 		if (!new_prompt)
-			err_exit(NULL, "utils", "Failed to allocate memory for prompt");
+			err_exit("utils", "Failed to allocate memory for prompt");
 	}
 	return (new_prompt);
 }

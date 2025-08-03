@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   clear_tokens.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/29 20:17:30 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:59:07 by didguill         ###   ########.fr       */
+/*   Created: 2025/08/03 22:58:55 by didguill          #+#    #+#             */
+/*   Updated: 2025/08/03 22:59:35 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
-#include <stddef.h>
+#ifndef CLEAR_TOKENS_H
+# define CLEAR_TOKENS_H
 
-void	init_shell(t_shell *shell)
-{
-	shell->prompt = NULL;
-	shell->input = NULL;
-	shell->tokens = NULL;
-	shell->commands = NULL;
-	shell->exit_requested = false;
-}
+# include "token.h"
+
+void	clear_tokens(t_token *tokens);
+
+#endif

@@ -6,12 +6,14 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 15:42:50 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 20:00:22 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 23:01:40 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils/err_exit.h"
+#include "token.h"
 #include <stdlib.h>
+#include <stdbool.h>
 
 t_token	*new_token(t_token_type type, char *value)
 {
@@ -31,7 +33,7 @@ void	add_token(t_token **head, t_token *new_token)
 	t_token	*cur;
 
 	if (!new_token)
-		err_exit(NULL, "lexer", "Attempted to add a NULL token");
+		err_exit("lexer", "Attempted to add a NULL token");
 	if (!*head)
 		*head = new_token;
 	else
