@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:12:45 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 19:16:47 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 #include "utils/startup_checks.h"
 #include "parser/parser.h"
 #include "lexer/lexer.h"
+#include "free/free.h"
 
 int	g_signal = 0;
 
