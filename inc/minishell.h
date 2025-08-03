@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 18:26:41 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:32:07 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@
 /*                            FUNCTION DECLARATIONS                           */
 /* ************************************************************************** */
 
-void		init_shell(t_shell *shell);
 void		free_shell(t_shell *shell);
-void		shell_readline(t_shell *shell);
 void		lexer(t_shell *shell);
 t_token		*new_token(t_token_type type, char *value);
 void		add_token(t_token **head, t_token *new);
