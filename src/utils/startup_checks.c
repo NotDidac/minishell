@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_utils.c                                      :+:      :+:    :+:   */
+/*   startup_checks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 19:42:08 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 18:24:47 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:39:28 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,6 @@
 
 static void	arg_check(int argc);
 static void	ensure_interactive_mode(void);
-
-void	err_exit(t_shell *shell, char *prefix, char *msg)
-{
-	if (shell)
-		free_shell(shell);
-	ft_putstr_fd("minishell: ", STDERR_FILENO);
-	if (prefix)
-	{
-		ft_putstr_fd(prefix, STDERR_FILENO);
-		ft_putstr_fd(": ", STDERR_FILENO);
-	}
-	ft_putstr_fd(msg, STDERR_FILENO);
-	ft_putstr_fd("\n", STDERR_FILENO);
-	exit(EXIT_FAILURE);
-}
 
 void	perform_startup_checks(int argc)
 {
