@@ -6,12 +6,12 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 15:42:50 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:10:39 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 20:00:22 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "utils/err_exit.h"
+#include <stdlib.h>
 
 t_token	*new_token(t_token_type type, char *value)
 {

@@ -6,12 +6,14 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 23:00:07 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 18:51:31 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 19:54:00 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "config.h"
+#include "token.h"
+#include "colors.h"
+#include <stdio.h>
 
 static const char	*token_type_to_string(t_token_type type);
 

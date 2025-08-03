@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:26:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:02:54 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 19:56:45 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "shell.h"
 #include "parser/parser_utils.h"
 #include "print_logs/parser_log.h"
+
+#include <stddef.h>
 
 static t_command	*parse_tokens(t_shell *shell);
 static void	parse_command_arguments(t_shell *shell, t_command **cmd, t_token **curr);

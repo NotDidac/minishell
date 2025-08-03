@@ -6,13 +6,14 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:46:38 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:11:04 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 20:00:36 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "shell.h"
 #include "utils/err_exit.h"
+
+#include <stdlib.h>
 
 t_command	*new_command(t_shell *shell)
 {

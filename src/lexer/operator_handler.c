@@ -6,11 +6,11 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 20:15:57 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:12:19 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 19:53:30 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 #include "shell.h"
 #include "utils/err_exit.h"
 #include "lexer/lexer_utils.h"

@@ -6,12 +6,14 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:31:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 18:26:11 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 20:00:57 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "shell.h"
+#include "colors.h"
+
+#include <stdio.h>
 
 void	executor(t_shell *shell)
 {

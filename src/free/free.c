@@ -6,13 +6,14 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 20:19:00 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:16:38 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 20:02:00 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "shell.h"
 #include "free/clear_commands.h"
+
+#include <stdlib.h>
 
 static void	free_input(t_shell *shell);
 static void	free_prompt(t_shell *shell);

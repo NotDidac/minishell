@@ -6,12 +6,12 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 20:17:30 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 18:24:44 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 19:59:07 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "shell.h"
+#include <stddef.h>
 
 void	init_shell(t_shell *shell)
 {

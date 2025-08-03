@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:18:41 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 19:54:49 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "shell.h"
 #include "readline.h"
 #include "utils/init.h"
@@ -45,6 +44,8 @@
 #include "lexer/lexer.h"
 #include "free/free.h"
 #include "executor/executor.h"
+
+#include <stdlib.h>
 
 int	g_signal = 0;
 

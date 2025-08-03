@@ -6,13 +6,13 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:39:31 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:16:15 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 19:53:42 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "shell.h"
 #include "free/free.h"
+#include "libft.h"
 
 void	err_exit(t_shell *shell, char *prefix, char *msg)
 {

@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:10:59 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:12:03 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 19:53:22 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 #include "shell.h"
 #include "print_logs/lexer_log.h"
 #include "utils/err_exit.h"
