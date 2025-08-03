@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 14:57:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:52:53 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 22:25:51 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 static void	update_prompt(t_shell *shell);
 
-void	shell_readline(t_shell *shell)
+char	*shell_readline(t_shell *shell)
 {
 	char	*line;
 
@@ -30,7 +30,7 @@ void	shell_readline(t_shell *shell)
 	{
 		shell->exit_requested = true;
 		shell->input = NULL;
-		return ;
+		return (NULL);
 	}
 	if (*line != '\0')
 		add_history(line);
@@ -38,10 +38,11 @@ void	shell_readline(t_shell *shell)
 	{
 		free(line);
 		shell->input = NULL;
-		return ;
+		return (NULL);
 	}
 	readline_log(line);
 	shell->input = line;
+	return (line);
 }
 
 static void	update_prompt(t_shell *shell)
