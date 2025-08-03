@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 22:26:45 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 22:28:43 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ static void	minishell_loop(t_shell *shell)
 	while (!shell->exit_requested)
 	{
 		input = shell_readline(shell);
-		(void)input;
-		tokens = lexer(shell);
+		tokens = lexer(input);
 		commands = parser(tokens);
 		executor(commands);
 		free_shell(shell);

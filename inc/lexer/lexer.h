@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 19:05:06 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 22:12:48 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 22:29:10 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "shell.h"
 
-t_token	*lexer(t_shell *shell);
+t_token	*lexer(char *input);
 
 #endif

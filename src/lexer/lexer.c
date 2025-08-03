@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:10:59 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 22:14:36 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 22:32:58 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,22 @@
 #include "lexer/lexer_utils.h"
 #include "lexer/operator_handler.h"
 
-static t_token	*tokenize(t_shell *shell, char *input);
-static int		handle_quote(t_shell *shell, char *input, int i,
-					t_token **tokens);
-static int		handle_word(t_shell *shell, char *input, int i,
-					t_token **tokens);
+static t_token	*tokenize(char *input);
+static int		handle_quote(char *input, int i, t_token **tokens);
+static int		handle_word(char *input, int i, t_token **tokens);
 
-t_token	*lexer(t_shell *shell)
+t_token	*lexer(char *input)
 {
 	t_token	*tokens;
 
-	if (!shell->input)
+	if (!input)
 		return (NULL);
-	tokens = tokenize(shell, shell->input);
-	shell->tokens = tokens;
+	tokens = tokenize(input);
 	lexer_log(tokens);
 	return (tokens);
 }
 
-static t_token	*tokenize(t_shell *shell, char *input)
+static t_token	*tokenize(char *input)
 {
 	t_token	*tokens;
 	int		i;
@@ -61,16 +58,16 @@ static t_token	*tokenize(t_shell *shell, char *input)
 		if (ft_isspace(input[i]))
 			i++;
 		else if (is_operator(input[i]))
-			i = handle_operator(shell, input, i, &tokens);
+			i = handle_operator(input, i, &tokens);
 		else if (is_quote(input[i]))
-			i = handle_quote(shell, input, i, &tokens);
+			i = handle_quote(input, i, &tokens);
 		else
-			i = handle_word(shell, input, i, &tokens);
+			i = handle_word(input, i, &tokens);
 	}
 	return (tokens);
 }
 
-static int	handle_quote(t_shell *shell, char *input, int i, t_token **tokens)
+static int	handle_quote(char *input, int i, t_token **tokens)
 {
 	char	*content;
 	char	quote;
@@ -82,21 +79,21 @@ static int	handle_quote(t_shell *shell, char *input, int i, t_token **tokens)
 	while (input[i] && input[i] != quote)
 		i++;
 	if (!input[i])
-		err_exit(shell, "lexer", "Unclosed quote");
+		err_exit(NULL, "lexer", "Unclosed quote");
 	content = ft_strndup(&input[start], i - start);
 	if (!content)
-		err_exit(shell, "lexer", "Failed to allocate memory for quoted token");
+		err_exit(NULL, "lexer", "Failed to allocate memory for quoted token");
 	token = new_token(TOKEN_STRING, content);
 	if (!token)
 	{
 		free(content);
-		err_exit(shell, "lexer", "Failed to create token for quoted string");
+		err_exit(NULL, "lexer", "Failed to create token for quoted string");
 	}
 	add_token(tokens, token);
 	return (i + 1);
 }
 
-static int	handle_word(t_shell *shell, char *input, int i, t_token **tokens)
+static int	handle_word(char *input, int i, t_token **tokens)
 {
 	int		start;
 	char	*word;
@@ -108,10 +105,10 @@ static int	handle_word(t_shell *shell, char *input, int i, t_token **tokens)
 		i++;
 	word = ft_strndup(&input[start], i - start);
 	if (!word)
-		err_exit(shell, "lexer", "Failed to allocate memory for word token");
+		err_exit(NULL, "lexer", "Failed to allocate memory for word token");
 	token = new_token(TOKEN_WORD, word);
 	if (!token)
-		err_exit(shell, "lexer", "Failed to create token for word");
+		err_exit(NULL, "lexer", "Failed to create token for word");
 	add_token(tokens, token);
 	return (i);
 }

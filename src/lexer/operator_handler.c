@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 20:15:57 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:53:30 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 22:31:14 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 static t_token_type	get_operator_type(char *input);
 static int			get_operator_len(t_token_type type);
 
-int	handle_operator(t_shell *shell, char *input, int i,
-	t_token **tokens)
+int	handle_operator(char *input, int i, t_token **tokens)
 {
 	t_token			*token;
 	t_token_type	type;
@@ -29,15 +28,15 @@ int	handle_operator(t_shell *shell, char *input, int i,
 	type = get_operator_type(&input[i]);
 	len = get_operator_len(type);
 	if (type == TOKEN_INVALID)
-		err_exit(shell, "lexer", "Invalid operator");
+		err_exit(NULL, "lexer", "Invalid operator");
 	str = ft_strndup(&input[i], len);
 	if (!str)
-		err_exit(shell, "lexer", "Failed to allocate memory for operator");
+		err_exit(NULL, "lexer", "Failed to allocate memory for operator");
 	token = new_token(type, str);
 	if (!token)
 	{
 		free(str);
-		err_exit(shell, "lexer", "Failed to create token for operator");
+		err_exit(NULL, "lexer", "Failed to create token for operator");
 	}
 	add_token(tokens, token);
 	return (i + len);
