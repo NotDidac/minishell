@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 18:43:19 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:57:38 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ bool		is_quote(char c);
 int			handle_operator(t_shell *shell, char *input, int i, t_token **tokens);
 void		parser(t_shell *shell);
 void		executor(t_shell *shell);
-void		readline_log(const char *line);
-void		lexer_log(t_token *tokens);
-void		parser_log(t_command *commands);
 void		clear_commands(t_shell *shell);
 t_command	*new_command(t_shell *shell);
 bool		parse_pipe(t_token **curr);
