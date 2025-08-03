@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:26:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 23:02:40 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 23:13:37 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 #include <stddef.h>
 
 static t_command	*parse_tokens(t_token *tokens);
-static void	parse_command_arguments(t_command **cmd, t_token **curr);
-static void	parse_command_redirections(t_command **cmd, t_token **curr);
+static void			parse_command_arguments(t_command **cmd, t_token **curr);
+static void			parse_command_redirections(t_command **cmd, t_token **curr);
 
 t_command	*parser(t_token *tokens)
 {
@@ -93,5 +93,4 @@ static void	parse_command_redirections(t_command **cmd, t_token **curr)
 		if (*curr)
 			*curr = (*curr)->next;
 	}
-
 }
