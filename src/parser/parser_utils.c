@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:46:38 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 18:45:32 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 19:11:04 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,18 @@ bool	parse_pipe(t_token **curr)
 	return (false);
 }
 
-void	append_command(t_command **head, t_command **cmd)
+void	append_command(t_command **head, t_command **new_cmd)
 {
 	t_command	*tmp;
 
 	if (!*head)
-		*head = *cmd;
+		*head = *new_cmd;
 	else
 	{
 		tmp = *head;
 		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = *cmd;
+		tmp->next = *new_cmd;
 	}
-	*cmd = NULL;
+	*new_cmd = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:10:59 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 18:58:12 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 19:12:03 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 #include "shell.h"
 #include "print_logs/lexer_log.h"
 #include "utils/err_exit.h"
+#include "lexer/lexer_utils.h"
+#include "lexer/operator_handler.h"
 
 static t_token	*tokenize(t_shell *shell, char *input);
 static int		handle_quote(t_shell *shell, char *input, int i,

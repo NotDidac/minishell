@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 15:42:50 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 18:45:22 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 19:10:39 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,20 @@ t_token	*new_token(t_token_type type, char *value)
 	return (token);
 }
 
-void	add_token(t_token **head, t_token *new)
+void	add_token(t_token **head, t_token *new_token)
 {
 	t_token	*cur;
 
-	if (!new)
+	if (!new_token)
 		err_exit(NULL, "lexer", "Attempted to add a NULL token");
 	if (!*head)
-		*head = new;
+		*head = new_token;
 	else
 	{
 		cur = *head;
 		while (cur->next)
 			cur = cur->next;
-		cur->next = new;
+		cur->next = new_token;
 	}
 }
 

@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.h                                     :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/03 19:01:07 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:11:19 by didguill         ###   ########.fr       */
+/*   Created: 2025/08/03 19:05:06 by didguill          #+#    #+#             */
+/*   Updated: 2025/08/03 19:05:44 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_UTILS_H
-# define PARSER_UTILS_H
+#ifndef LEXER_H
+# define LEXER_H
 
 # include "shell.h"
-# include "command.h"
-# include "token.h"
 
-t_command	*new_command(t_shell *shell);
-bool		parse_pipe(t_token **curr);
-void		append_command(t_command **head, t_command **new_cmd);
+void		lexer(t_shell *shell);
 
 #endif
