@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 19:01:07 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:11:19 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 22:20:10 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "command.h"
 # include "token.h"
 
-t_command	*new_command(t_shell *shell);
+t_command	*new_command(void);
 bool		parse_pipe(t_token **curr);
 void		append_command(t_command **head, t_command **new_cmd);
 

@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:26:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 20:53:48 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/03 22:21:45 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,22 @@
 
 #include <stddef.h>
 
-static t_command	*parse_tokens(t_shell *shell);
-static void	parse_command_arguments(t_shell *shell, t_command **cmd, t_token **curr);
-static void	parse_command_redirections(t_shell *shell, t_command **cmd, t_token **curr);
+static t_command	*parse_tokens(t_token *tokens);
+static void	parse_command_arguments(t_command **cmd, t_token **curr);
+static void	parse_command_redirections(t_command **cmd, t_token **curr);
 
-t_command	*parser(t_shell *shell)
+t_command	*parser(t_token *tokens)
 {
 	t_command	*commands;
 
-	if (!shell->tokens)
-	{
-		shell->commands = NULL;
+	if (!tokens)
 		return (NULL);
-	}
-	commands = parse_tokens(shell);
+	commands = parse_tokens(tokens);
 	parser_log(commands);
 	return (commands);
 }
 
-static t_command	*parse_tokens(t_shell *shell)
+static t_command	*parse_tokens(t_token *tokens)
 {
 	t_command	*head;
 	t_command	*cmd;
@@ -56,13 +53,13 @@ static t_command	*parse_tokens(t_shell *shell)
 
 	head = NULL;
 	cmd = NULL;
-	curr = shell->tokens;
+	curr = tokens;
 	while (curr)
 	{
 		if (!cmd)
-			cmd = new_command(shell);
-		parse_command_arguments(shell, &cmd, &curr);
-		parse_command_redirections(shell, &cmd, &curr);
+			cmd = new_command();
+		parse_command_arguments(&cmd, &curr);
+		parse_command_redirections(&cmd, &curr);
 		is_pipe = parse_pipe(&curr);
 		cmd->is_pipe = is_pipe;
 		append_command(&head, &cmd);
@@ -73,9 +70,8 @@ static t_command	*parse_tokens(t_shell *shell)
 }
 
 // Gather all arguments (TOKEN_WORD, TOKEN_STRING) for the current command
-static void	parse_command_arguments(t_shell *shell, t_command **cmd, t_token **curr)
+static void	parse_command_arguments(t_command **cmd, t_token **curr)
 {
-	(void)shell;
 	(void)cmd;
 	if (*curr && ((*curr)->type == TOKEN_WORD || (*curr)->type == TOKEN_STRING))
 	{
@@ -85,9 +81,8 @@ static void	parse_command_arguments(t_shell *shell, t_command **cmd, t_token **c
 }
 
 // Check for redirection tokens '<' '<<' '>' '>>' and set input/output files accordingly
-static void	parse_command_redirections(t_shell *shell, t_command **cmd, t_token **curr)
+static void	parse_command_redirections(t_command **cmd, t_token **curr)
 {
-	(void)shell;
 	(void)cmd;
 	while (*curr && ((*curr)->type == TOKEN_REDIRECT_IN ||
 			(*curr)->type == TOKEN_REDIRECT_OUT ||
