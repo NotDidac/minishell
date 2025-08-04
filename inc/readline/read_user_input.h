@@ -6,13 +6,13 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:28:27 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 22:47:50 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/04 12:10:55 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef READLINE_H
 # define READLINE_H
 
-char	*shell_readline(void);
+char	*read_user_input(void);
 
 #endif

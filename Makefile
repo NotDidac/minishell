@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/08/04 11:08:53 by didguill         ###   ########.fr        #
+#    Updated: 2025/08/04 12:13:59 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ NAME	= minishell
 # Directories
 SRC_DIR				= src/
 
+SRC_READLINE_DIR	= readline/
 SRC_LEXER_DIR		= lexer/
 SRC_PARSER_DIR		= parser/
 SRC_EXECUTOR_DIR	= executor/
@@ -46,6 +47,7 @@ LIBFT_INC	= $(LIBFT_DIR)inc/
 LIBFT_A		= $(LIBFT_DIR)libft.a
 
 # Source files
+SRC_READLINE	= read_user_input.c
 SRC_LEXER		= lexer.c operator_handler.c lexer_utils.c token_list.c
 SRC_PARSER		= parser.c parser_utils.c command_list.c
 SRC_EXECUTOR	= executor.c
@@ -62,7 +64,7 @@ SRCS			= $(addprefix $(SRC_READLINE_DIR),  $(SRC_READLINE))     \
 				  $(addprefix $(SRC_UTILS_DIR),     $(SRC_UTILS))        \
 				  $(addprefix $(SRC_FREE_DIR),      $(SRC_FREE))	     \
 				  $(addprefix $(SRC_PRINT_LOGS_DIR), $(SRC_PRINT_LOGS))  \
-				  main.c readline.c
+				  main.c
 
 SRCS			:= $(addprefix $(SRC_DIR), $(SRCS))
 
