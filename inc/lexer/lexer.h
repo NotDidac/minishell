@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 19:05:06 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/04 10:49:40 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/04 12:00:59 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "lexer/token_list.h"
 
-t_token	*lexer(char *input);
+t_token	*lexer(char *user_input);
 
 #endif

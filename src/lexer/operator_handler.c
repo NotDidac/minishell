@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 20:15:57 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/04 10:39:00 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/04 11:55:22 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@
 static t_token_type	get_operator_type(char *input);
 static int			get_operator_len(t_token_type type);
 
-int	handle_operator(char *input, int i, t_token **tokens)
+int	handle_operator(char *user_input, int i, t_token **tokens)
 {
 	t_token			*token;
 	t_token_type	type;
 	char			*str;
 	int				len;
 
-	type = get_operator_type(&input[i]);
+	type = get_operator_type(&user_input[i]);
 	len = get_operator_len(type);
 	if (type == TOKEN_INVALID)
 		err_exit("lexer", "Invalid operator");
-	str = ft_strndup(&input[i], len);
+	str = ft_strndup(&user_input[i], len);
 	if (!str)
 		err_exit("lexer", "Failed to allocate memory for operator");
 	token = new_token(type, str);
@@ -41,19 +41,19 @@ int	handle_operator(char *input, int i, t_token **tokens)
 	return (i + len);
 }
 
-static t_token_type	get_operator_type(char *input)
+static t_token_type	get_operator_type(char *user_input)
 {
-	if (input[0] == '|' )
+	if (user_input[0] == '|' )
 		return (TOKEN_PIPE);
-	else if (input[0] == '<')
+	else if (user_input[0] == '<')
 	{
-		if (input[1] && input[1] == '<')
+		if (user_input[1] && user_input[1] == '<')
 			return (TOKEN_HEREDOC);
 		return (TOKEN_REDIRECT_IN);
 	}
-	else if (input[0] == '>')
+	else if (user_input[0] == '>')
 	{
-		if (input[1] && input[1] == '>')
+		if (user_input[1] && user_input[1] == '>')
 			return (TOKEN_REDIRECT_APPEND);
 		return (TOKEN_REDIRECT_OUT);
 	}

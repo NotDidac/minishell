@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 19:23:50 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/04 11:08:20 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/04 11:58:14 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static void	print_header(void)
 
 static void	print_commands(t_command *commands)
 {
-	char	*input;
-	char	*output;
+	char	*input_file;
+	char	*output_file;
 	char	args[64];
 	int		i;
 
@@ -60,14 +60,15 @@ static void	print_commands(t_command *commands)
 		else
 			ft_strlcpy(args, "NULL", sizeof(args));
 		if (commands->input_file)
-			input = commands->input_file;
+			input_file = commands->input_file;
 		else
-			input = "NULL";
+			input_file = "NULL";
 		if (commands->output_file)
-			output = commands->output_file;
+			output_file = commands->output_file;
 		else
-			output = "NULL";
-		printf("| %-3d | %-35s | %-12s | %-12s |\n", i, args, input, output);
+			output_file = "NULL";
+		printf("| %-3d | %-35s | %-12s | %-12s |\n", i, args, input_file,
+			output_file);
 		commands = commands->next;
 		i++;
 	}

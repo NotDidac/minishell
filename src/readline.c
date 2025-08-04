@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 14:57:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 22:51:37 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/04 11:33:41 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-static char	*update_prompt(void);
+static char	*get_prompt(void);
 
 char	*shell_readline(void)
 {
 	char	*line;
 	char	*prompt;
 
-	prompt = update_prompt();
+	prompt = get_prompt();
 	line = readline(prompt);
 	if (!line)
 		return (NULL);
@@ -39,7 +39,7 @@ char	*shell_readline(void)
 	return (line);
 }
 
-static char	*update_prompt(void)
+static char	*get_prompt(void)
 {
 	char	*new_prompt;
 	char	*tmp;
