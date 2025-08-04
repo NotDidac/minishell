@@ -6,12 +6,12 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 20:19:00 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 22:59:12 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/04 10:37:24 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "free/clear_commands.h"
-#include "token.h"
+#include "lexer/token_list.h"
 
 #include <stdlib.h>
 

@@ -6,12 +6,12 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 23:00:07 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:54:00 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/04 10:37:15 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "config.h"
-#include "token.h"
+#include "lexer/token_list.h"
 #include "colors.h"
 #include <stdio.h>
 

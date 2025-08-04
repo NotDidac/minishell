@@ -6,13 +6,13 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 20:15:57 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 22:53:47 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/04 10:39:00 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/err_exit.h"
-#include "lexer/lexer_utils.h"
+#include "lexer/token_list.h"
 
 static t_token_type	get_operator_type(char *input);
 static int			get_operator_len(t_token_type type);

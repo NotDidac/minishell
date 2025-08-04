@@ -6,14 +6,14 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 22:58:55 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 22:59:35 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/04 10:36:03 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLEAR_TOKENS_H
 # define CLEAR_TOKENS_H
 
-# include "token.h"
+# include "lexer/token_list.h"
 
 void	clear_tokens(t_token *tokens);
 

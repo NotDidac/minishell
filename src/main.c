@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 22:51:04 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/04 10:40:24 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@
 
 #include "readline.h"
 #include "utils/startup_checks.h"
-#include "parser/parser.h"
 #include "lexer/lexer.h"
 #include "executor/executor.h"
-#include "token.h"
+#include "parser/parser.h"
+#include "lexer/token_list.h"
 #include "command.h"
 
 #include <stdlib.h>

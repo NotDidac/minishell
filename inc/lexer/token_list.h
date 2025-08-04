@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token.h                                            :+:      :+:    :+:   */
+/*   token_list.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/30 10:13:19 by didguill          #+#    #+#             */
-/*   Updated: 2025/07/30 22:26:15 by didguill         ###   ########.fr       */
+/*   Created: 2025/08/04 10:33:49 by didguill          #+#    #+#             */
+/*   Updated: 2025/08/04 10:35:10 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKEN_H
-# define TOKEN_H
+#ifndef TOKEN_LIST_H
+# define TOKEN_LIST_H
 
 typedef enum e_token_type
 {
@@ -31,5 +31,8 @@ typedef struct s_token
 	char			*value;
 	struct s_token	*next;
 }	t_token;
+
+t_token	*new_token(t_token_type type, char *value);
+void	add_token(t_token **head, t_token *new_token);
 
 #endif

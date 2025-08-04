@@ -6,13 +6,13 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:46:38 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 22:53:21 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/04 10:37:09 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils/err_exit.h"
 #include "command.h"
-#include "token.h"
+#include "lexer/token_list.h"
 
 #include <stdlib.h>
 
