@@ -6,12 +6,12 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 19:23:50 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 19:53:56 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/04 11:08:20 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "config.h"
-#include "command.h"
+#include "parser/command_list.h"
 #include "colors.h"
 #include "libft.h"
 

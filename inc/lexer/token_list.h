@@ -6,12 +6,14 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 10:33:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/04 10:35:10 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/04 11:09:49 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_LIST_H
 # define TOKEN_LIST_H
+
+typedef struct s_token	t_token;
 
 typedef enum e_token_type
 {
@@ -29,7 +31,7 @@ typedef struct s_token
 {
 	t_token_type	type;
 	char			*value;
-	struct s_token	*next;
+	t_token			*next;
 }	t_token;
 
 t_token	*new_token(t_token_type type, char *value);

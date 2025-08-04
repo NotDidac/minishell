@@ -6,11 +6,11 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:29:32 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 23:00:44 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/04 11:06:29 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "command.h"
+#include "parser/command_list.h"
 #include <stdlib.h>
 
 static void	free_args(char **args);

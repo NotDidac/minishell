@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 19:00:26 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/04 10:37:59 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/04 11:06:50 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PARSER_H
 
 # include "lexer/token_list.h"
-# include "command.h"
+# include "parser/command_list.h"
 
 t_command	*parser(t_token *tokens);
 
