@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/04 12:13:22 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:05:42 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 #include "parser/parser.h"
 #include "executor/executor.h"
 
+#include <readline/readline.h>
+#include <readline/history.h>
 #include <stdlib.h>
 
 int	g_signal = 0;
@@ -69,4 +71,5 @@ static void	minishell_loop(void)
 		commands = parser(tokens);
 		executor(commands);
 	}
+	rl_clear_history();
 }
