@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal_handler.c                                   :+:      :+:    :+:   */
+/*   line_reader.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/06 16:02:07 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/06 16:10:32 by didguill         ###   ########.fr       */
+/*   Created: 2025/08/03 18:28:27 by didguill          #+#    #+#             */
+/*   Updated: 2025/08/06 16:36:32 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <readline/readline.h>
-#include <signal.h>
-#include <unistd.h>
+#ifndef LINE_READER_H
+# define LINE_READER_H
 
-static void	sigint_handler(int signum);
+char	*read_user_input(void);
+void	setup_line_reader(void);
 
-void	setup_signal_handlers(void)
-{
-	signal(SIGINT, sigint_handler);
-	signal(SIGQUIT, SIG_IGN);
-}
-
-static void	sigint_handler(int signum)
-{
-	(void)signum;
-	write (STDOUT_FILENO, "\n", 1);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-}
+#endif

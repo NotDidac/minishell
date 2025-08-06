@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/06 16:09:39 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/06 16:37:02 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/shell_init.h"
-#include "readline/read_user_input.h"
+#include "readline/line_reader.h"
 #include "lexer/lexer.h"
 #include "parser/parser.h"
 #include "executor/executor.h"
+#include "utils/err_exit.h"
 
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 int	g_signal = 0;
 
 static void	minishell_loop(void);
+static void	arg_check(int argc);
+static void	ensure_interactive_mode(void);
 
 int	main(int argc, char **envp)
 {
 	(void)envp;
-	initialize_shell(argc);
+	arg_check(argc);
+	ensure_interactive_mode();
+	setup_line_reader();
 	minishell_loop();
 	return (EXIT_SUCCESS);
 }
@@ -74,4 +79,20 @@ static void	minishell_loop(void)
 		executor(commands);
 	}
 	rl_clear_history();
+}
+
+static void	ensure_interactive_mode(void)
+{
+	if (!isatty(STDIN_FILENO))
+		err_exit(NULL, "Standard input is not a terminal");
+	if (!isatty(STDOUT_FILENO))
+		err_exit(NULL, "Standard output is not a terminal");
+	if (!isatty(STDERR_FILENO))
+		err_exit(NULL, "Standard error is not a terminal");
+}
+
+static void	arg_check(int argc)
+{
+	if (argc != 1)
+		err_exit(NULL, "No arguments expected");
 }
