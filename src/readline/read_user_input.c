@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 14:57:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/04 12:11:34 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:12:37 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*read_user_input(void)
 
 	prompt = get_prompt();
 	line = readline(prompt);
+	free(prompt);
 	if (!line)
 		return (NULL);
 	if (*line != '\0')
