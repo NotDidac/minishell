@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/08/04 12:13:59 by didguill         ###   ########.fr        #
+#    Updated: 2025/08/06 15:11:00 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,7 @@ all: $(NAME)
 
 debug: fclean all
 	@echo "$(CYAN)Running $(NAME) with Valgrind...$(DEF_COLOR)"
-	@valgrind --leak-check=full --show-leak-kinds=definite --track-origins=yes ./$(NAME)
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=readline.supp -s ./$(NAME)
 
 $(NAME): $(LIBFT_A) $(OBJS)
 	@echo -n "$(CYAN)Linking $(NAME)... $(DEF_COLOR)"
