@@ -15,6 +15,9 @@
 
 # include "parser/command_list.h"
 
-void	executor(t_command *commands);
+void	    executor(t_command *commands);
+t_command *test_echo_hola(void);
+t_command *test_echo_wc(void);
+t_command *test_ls_wc(void);
 
 #endif

@@ -43,6 +43,7 @@
 #include "executor/executor.h"
 
 #include <stdlib.h>
+#include <stdio.h>
 
 int	g_signal = 0;
 
@@ -62,11 +63,19 @@ static void	minishell_loop(void)
 	t_token		*tokens;
 	char		*user_input;
 
+	(void)commands;
 	while (true)
 	{
 		user_input = read_user_input();
 		tokens = lexer(user_input);
 		commands = parser(tokens);
-		executor(commands);
+		printf("\n--- Test 1: echo hola ---\n");
+		executor(test_echo_hola());
+
+		printf("\n--- Test 2: echo hola mundo | wc -w ---\n");
+		executor(test_echo_wc());
+
+		printf("\n--- Test 3: ls | wc -l ---\n");
+		executor(test_ls_wc());
 	}
 }

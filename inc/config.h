@@ -16,6 +16,6 @@
 # include <stdbool.h>
 
 # define PATH_MAX		4096
-# define ENABLE_LOGS	true
+# define ENABLE_LOGS	false
 
 #endif
