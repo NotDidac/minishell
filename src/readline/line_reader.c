@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_user_input.c                                  :+:      :+:    :+:   */
+/*   line_reader.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 14:57:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/04 12:11:34 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/06 16:29:50 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 #include "config.h"
 #include "utils/err_exit.h"
 #include "print_logs/readline_log.h"
+
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <signal.h>
 
 static char	*get_prompt(void);
+static void	sigint_handler(int signum);
 
 char	*read_user_input(void)
 {
@@ -25,16 +28,16 @@ char	*read_user_input(void)
 	char	*prompt;
 
 	prompt = get_prompt();
+	if (!prompt)
+		err_exit("utils", "Failed to allocate memory for prompt");
 	line = readline(prompt);
-	if (!line)
-		return (NULL);
-	if (*line != '\0')
-		add_history(line);
-	else
+	free(prompt);
+	if (!line || !*line)
 	{
 		free(line);
 		return (NULL);
 	}
+	add_history(line);
 	readline_log(line);
 	return (line);
 }
@@ -62,4 +65,19 @@ static char	*get_prompt(void)
 			err_exit("utils", "Failed to allocate memory for prompt");
 	}
 	return (new_prompt);
+}
+
+void	setup_line_reader(void)
+{
+	signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, SIG_IGN);
+}
+
+static void	sigint_handler(int signum)
+{
+	(void)signum;
+	write (STDOUT_FILENO, "\n", 1);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 }

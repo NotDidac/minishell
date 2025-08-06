@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:26:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/04 10:56:55 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:40:17 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 #include "parser/parser_utils.h"
 #include "print_logs/parser_log.h"
+#include "free/clear_tokens.h"
 
 #include <stddef.h>
 
@@ -39,6 +40,7 @@ t_command	*parser(t_token *tokens)
 	if (!tokens)
 		return (NULL);
 	commands = parse_tokens(tokens);
+	clear_tokens(tokens);
 	parser_log(commands);
 	return (commands);
 }

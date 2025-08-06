@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 20:15:57 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/04 11:55:22 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:44:32 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ int	handle_operator(char *user_input, int i, t_token **tokens)
 		err_exit("lexer", "Failed to allocate memory for operator");
 	token = new_token(type, str);
 	if (!token)
-	{
-		free(str);
 		err_exit("lexer", "Failed to create token for operator");
-	}
 	add_token(tokens, token);
 	return (i + len);
 }

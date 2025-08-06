@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/08/04 12:13:59 by didguill         ###   ########.fr        #
+#    Updated: 2025/08/06 16:36:46 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,12 +47,12 @@ LIBFT_INC	= $(LIBFT_DIR)inc/
 LIBFT_A		= $(LIBFT_DIR)libft.a
 
 # Source files
-SRC_READLINE	= read_user_input.c
+SRC_READLINE	= line_reader.c
 SRC_LEXER		= lexer.c operator_handler.c lexer_utils.c token_list.c
 SRC_PARSER		= parser.c parser_utils.c command_list.c
 SRC_EXECUTOR	= executor.c
 SRC_BUILTINS	= builtins.c
-SRC_UTILS		= startup_checks.c err_exit.c
+SRC_UTILS		= err_exit.c
 SRC_FREE		= clear_tokens.c clear_commands.c
 SRC_PRINT_LOGS	= lexer_log.c parser_log.c readline_log.c
 
@@ -86,7 +86,7 @@ all: $(NAME)
 
 debug: fclean all
 	@echo "$(CYAN)Running $(NAME) with Valgrind...$(DEF_COLOR)"
-	@valgrind --leak-check=full --show-leak-kinds=definite --track-origins=yes ./$(NAME)
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=readline.supp -s ./$(NAME)
 
 $(NAME): $(LIBFT_A) $(OBJS)
 	@echo -n "$(CYAN)Linking $(NAME)... $(DEF_COLOR)"
