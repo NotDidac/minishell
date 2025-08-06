@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:10:59 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/06 15:14:37 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:37:07 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_token	*lexer(char *user_input)
 	if (!user_input)
 		return (NULL);
 	tokens = tokenize(user_input);
+	free(user_input);
 	lexer_log(tokens);
 	return (tokens);
 }
@@ -63,7 +64,6 @@ static t_token	*tokenize(char *user_input)
 		else
 			i = handle_word(user_input, i, &tokens);
 	}
-	free(user_input);
 	return (tokens);
 }
 

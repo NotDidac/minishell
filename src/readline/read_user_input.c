@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 14:57:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/06 15:12:37 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:49:39 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,16 @@ char	*read_user_input(void)
 	char	*prompt;
 
 	prompt = get_prompt();
+	if (!prompt)
+		err_exit("utils", "Failed to allocate memory for prompt");
 	line = readline(prompt);
 	free(prompt);
-	if (!line)
-		return (NULL);
-	if (*line != '\0')
-		add_history(line);
-	else
+	if (!line || !*line)
 	{
 		free(line);
 		return (NULL);
 	}
+	add_history(line);
 	readline_log(line);
 	return (line);
 }

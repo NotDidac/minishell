@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/06 14:05:42 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/06 16:09:39 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/startup_checks.h"
+#include "utils/shell_init.h"
 #include "readline/read_user_input.h"
 #include "lexer/lexer.h"
 #include "parser/parser.h"
@@ -53,7 +53,7 @@ static void	minishell_loop(void);
 int	main(int argc, char **envp)
 {
 	(void)envp;
-	perform_startup_checks(argc);
+	initialize_shell(argc);
 	minishell_loop();
 	return (EXIT_SUCCESS);
 }
@@ -67,6 +67,8 @@ static void	minishell_loop(void)
 	while (true)
 	{
 		user_input = read_user_input();
+		if (!user_input)
+			break ;
 		tokens = lexer(user_input);
 		commands = parser(tokens);
 		executor(commands);

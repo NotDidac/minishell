@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/08/06 15:11:00 by didguill         ###   ########.fr        #
+#    Updated: 2025/08/06 16:08:29 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ SRC_LEXER		= lexer.c operator_handler.c lexer_utils.c token_list.c
 SRC_PARSER		= parser.c parser_utils.c command_list.c
 SRC_EXECUTOR	= executor.c
 SRC_BUILTINS	= builtins.c
-SRC_UTILS		= startup_checks.c err_exit.c
+SRC_UTILS		= err_exit.c shell_init.c signal_handler.c
 SRC_FREE		= clear_tokens.c clear_commands.c
 SRC_PRINT_LOGS	= lexer_log.c parser_log.c readline_log.c
 

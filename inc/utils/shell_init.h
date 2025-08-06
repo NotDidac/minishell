@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_tokens.c                                     :+:      :+:    :+:   */
+/*   shell_init.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/29 20:19:00 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/06 15:41:34 by didguill         ###   ########.fr       */
+/*   Created: 2025/08/03 18:42:14 by didguill          #+#    #+#             */
+/*   Updated: 2025/08/06 16:00:30 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "free/clear_commands.h"
-#include "lexer/token_list.h"
+#ifndef SHELL_INIT_H
+# define SHELL_INIT_H
 
-#include <stdlib.h>
+void		initialize_shell(int argc);
 
-void	clear_tokens(t_token *tokens)
-{
-	t_token	*current;
-	t_token	*next;
-
-	if (!tokens)
-		return ;
-	current = tokens;
-	while (current)
-	{
-		next = current->next;
-		if (current->value)
-			free(current->value);
-		free(current);
-		current = next;
-	}
-}
+#endif
