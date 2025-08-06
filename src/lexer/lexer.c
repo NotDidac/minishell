@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:10:59 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/04 11:56:39 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:14:37 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static t_token	*tokenize(char *user_input)
 		else
 			i = handle_word(user_input, i, &tokens);
 	}
+	free(user_input);
 	return (tokens);
 }
 
