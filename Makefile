@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/08/06 16:36:46 by didguill         ###   ########.fr        #
+#    Updated: 2025/08/07 13:09:01 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SRC_EXECUTOR	= executor.c
 SRC_BUILTINS	= builtins.c
 SRC_UTILS		= err_exit.c
 SRC_FREE		= clear_tokens.c clear_commands.c
-SRC_PRINT_LOGS	= lexer_log.c parser_log.c readline_log.c
+SRC_PRINT_LOGS	= lexer_log.c parser_log.c readline_log.c print_utils.c
 
 SRCS			= $(addprefix $(SRC_READLINE_DIR),  $(SRC_READLINE))     \
 				  $(addprefix $(SRC_LEXER_DIR),     $(SRC_LEXER))        \
