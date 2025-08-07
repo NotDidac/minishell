@@ -6,14 +6,13 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 10:59:54 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/07 10:40:43 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/07 12:58:36 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser/command_list.h"
 #include "utils/err_exit.h"
-
-#include <stdlib.h>
+#include "libft.h"
 
 t_command	*new_command(void)
 {
@@ -55,7 +54,11 @@ t_redirection	*new_redirection(t_token_type type, const char *file)
 		err_exit("Parser", "Failed to allocate memory for redirection");
 	redir->type = type;
 	if (file)
+	{
 		redir->file = ft_strdup(file);
+		if (!redir->file)
+			err_exit("Parser", "Failed to allocate memory for redirection file");
+	}
 	else
 		redir->file = NULL;
 	redir->next = NULL;
@@ -74,7 +77,6 @@ void	append_redirection(t_redirection **head, t_redirection *new_redir)
 		*head = new_redir;
 		return ;
 	}
-
 	temp = *head;
 	while (temp->next)
 		temp = temp->next;

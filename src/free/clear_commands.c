@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:29:32 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/04 11:06:29 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/07 13:02:22 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,28 @@
 #include <stdlib.h>
 
 static void	free_args(char **args);
+static void	clear_redirections(t_redirection *redirs);
 
-void	clear_commands(t_command *commands)
+void	clear_commands(t_command *command)
 {
-	t_command	*curr;
-	t_command	*next;
+	t_command	*temp;
 
-	if (!commands)
-		return ;
-	curr = commands;
-	while (curr)
+	while (command)
 	{
-		next = curr->next;
-		if (curr->args)
-			free_args(curr->args);
-		if (curr->input_file)
-			free(curr->input_file);
-		if (curr->output_file)
-			free(curr->output_file);
-		free(curr);
-		curr = next;
+		temp = command->next;
+		free_args(command->args);
+		clear_redirections(command->redirs);
+		free(command);
+		command = temp;
 	}
-	commands = NULL;
 }
 
 static void	free_args(char **args)
 {
-	int	i;
+	size_t	i;
 
+	if (!args)
+		return ;
 	i = 0;
 	while (args[i])
 	{
@@ -49,4 +43,17 @@ static void	free_args(char **args)
 		i++;
 	}
 	free(args);
+}
+
+static void	clear_redirections(t_redirection *redirs)
+{
+	t_redirection	*temp;
+
+	while (redirs)
+	{
+		temp = redirs->next;
+		free(redirs->file);
+		free(redirs);
+		redirs = temp;
+	}
 }

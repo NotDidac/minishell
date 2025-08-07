@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:26:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/06 15:40:17 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/07 13:47:47 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,16 @@
 /* ************************************************************************** */
 
 #include "parser/parser_utils.h"
+#include "parser/command_list.h"
 #include "print_logs/parser_log.h"
 #include "free/clear_tokens.h"
+#include "utils/err_exit.h"
 
 #include <stddef.h>
 
-static t_command	*parse_tokens(t_token *tokens);
-static void			parse_command_arguments(t_command **cmd, t_token **curr);
-static void			parse_command_redirections(t_command **cmd, t_token **curr);
+static t_command	*parse(t_token *tokens);
+static void			set_command_arguments(t_token **tokens, t_command *command);
+static void			set_redirections(t_token **tokens, t_command *command);
 
 t_command	*parser(t_token *tokens)
 {
@@ -39,60 +41,80 @@ t_command	*parser(t_token *tokens)
 
 	if (!tokens)
 		return (NULL);
-	commands = parse_tokens(tokens);
+	commands = parse(tokens);
 	clear_tokens(tokens);
 	parser_log(commands);
 	return (commands);
 }
 
-static t_command	*parse_tokens(t_token *tokens)
+static t_command	*parse(t_token *tokens)
 {
 	t_command	*head;
-	t_command	*cmd;
-	t_token		*curr;
-	bool		is_pipe;
+	t_command	*current_command;
 
 	head = NULL;
-	cmd = NULL;
-	curr = tokens;
-	while (curr)
+	current_command = NULL;
+	while (tokens)
 	{
-		if (!cmd)
-			cmd = new_command();
-		parse_command_arguments(&cmd, &curr);
-		parse_command_redirections(&cmd, &curr);
-		is_pipe = parse_pipe(&curr);
-		cmd->is_pipe = is_pipe;
-		append_command(&head, &cmd);
-		if (!is_pipe)
-			break ;
+		if (!current_command)
+		{
+			current_command = new_command();
+			append_command(&head, current_command);
+		}
+		if (tokens->type == TOKEN_PIPE)
+		{
+			handle_pipe(&tokens, &current_command);
+			continue ;
+		}
+		set_command_arguments(&tokens, current_command);
+		set_redirections(&tokens, current_command);
 	}
+	if (!current_command || !current_command->args || !current_command->args[0])
+		err_exit("Parser", "Last command is empty");
 	return (head);
 }
 
-// Gather all arguments (TOKEN_WORD, TOKEN_STRING) for the current command
-static void	parse_command_arguments(t_command **cmd, t_token **curr)
+static void	set_command_arguments(t_token **tokens, t_command *command)
 {
-	(void)cmd;
-	if (*curr && ((*curr)->type == TOKEN_WORD || (*curr)->type == TOKEN_STRING))
+	t_token	*current_token;
+
+	current_token = *tokens;
+	while (current_token && current_token->type != TOKEN_PIPE && !is_redirection(current_token->type))
 	{
-		// Here you would typically add the argument to cmd->args
-		*curr = (*curr)->next;
+		if (current_token->type == TOKEN_WORD || current_token->type == TOKEN_STRING)
+			append_argument(command, current_token->value);
+		else if (current_token->type == TOKEN_INVALID)
+		{
+			clear_tokens(*tokens);
+			err_exit("Parser", "Invalid token encountered");
+		}
+		current_token = current_token->next;
 	}
+	*tokens = current_token;
 }
 
-// Check for redirection tokens '<' '<<' '>' '>>' and set input/output files accordingly
-static void	parse_command_redirections(t_command **cmd, t_token **curr)
+static void	set_redirections(t_token **tokens, t_command *command)
 {
-	(void)cmd;
-	while (*curr && ((*curr)->type == TOKEN_REDIRECT_IN ||
-			(*curr)->type == TOKEN_REDIRECT_OUT ||
-			(*curr)->type == TOKEN_REDIRECT_APPEND ||
-			(*curr)->type == TOKEN_HEREDOC))
+	t_token			*current_token;
+	t_token_type	type;
+	t_redirection	*new_redir;
+
+	current_token = *tokens;
+	while (current_token && is_redirection(current_token->type))
 	{
-		// Here you would typically set the input/output files in cmd
-		*curr = (*curr)->next;
-		if (*curr)
-			*curr = (*curr)->next;
+		type = current_token->type;
+		current_token = current_token->next;
+		if(!current_token || (current_token->type != TOKEN_WORD && current_token->type != TOKEN_STRING))
+		{
+			clear_tokens(*tokens);
+			err_exit("Parser", "Redirection must be followed by a filename");
+		}
+		new_redir = new_redirection(type, current_token->value);
+		if (!command->redirs)
+			command->redirs = new_redir;
+		else
+			append_redirection(&command->redirs, new_redir);
+		current_token = current_token->next;
 	}
+	*tokens = current_token;
 }
