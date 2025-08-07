@@ -6,99 +6,69 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 19:23:50 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/04 11:58:14 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/07 13:42:40 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "config.h"
+#include "print_logs/print_utils.h"
 #include "parser/command_list.h"
+#include "config.h"
 #include "colors.h"
-#include "libft.h"
 
-static void	print_header(void);
-static void	print_commands(t_command *commands);
-static void	build_args_string(t_command *cmd, char *arg_str, size_t size);
-static void	print_footer(void);
+#include <stdio.h>
 
 void	parser_log(t_command *commands)
 {
+	t_command		*cmd;
+	t_redirection	*redir;
+	int				i;
+	int				cmd_index = 1;
+
 	if (!ENABLE_LOGS)
 		return ;
-	if (!commands)
+	printf(BLUE "[Parser] " RESET "Parsed Command List:\n\n");
+	cmd = commands;
+	while (cmd)
 	{
-		printf(BLUE "[Parser] " RESET "No commands to display.\n\n");
-		return ;
-	}
-	print_header();
-	print_commands(commands);
-	print_footer();
-}
+		// Command header with index and separator
+		printf(CYAN "========== Command #%d ==========\n\n" RESET, cmd_index++);
 
-static void	print_header(void)
-{
-	printf(BLUE "[Parser] " RESET "Command List:\n");
-	printf(GRAY "--------------------------------------------------------------"
-		"-------------\n" RESET);
-	printf(YELLOW "| %-3s | %-35s | %-12s | %-12s |\n" RESET, "#", "Args",
-		"Input", "Output");
-	printf(GRAY "--------------------------------------------------------------"
-		"-------------\n" RESET);
-}
-
-static void	print_commands(t_command *commands)
-{
-	char	*input_file;
-	char	*output_file;
-	char	args[64];
-	int		i;
-
-	i = 0;
-	while (commands)
-	{
-		if (commands->args)
-			build_args_string(commands, args, sizeof(args));
-		else
-			ft_strlcpy(args, "NULL", sizeof(args));
-		if (commands->input_file)
-			input_file = commands->input_file;
-		else
-			input_file = "NULL";
-		if (commands->output_file)
-			output_file = commands->output_file;
-		else
-			output_file = "NULL";
-		printf("| %-3d | %-35s | %-12s | %-12s |\n", i, args, input_file,
-			output_file);
-		commands = commands->next;
-		i++;
-	}
-}
-
-static void	build_args_string(t_command *cmd, char *arg_str, size_t size)
-{
-	size_t	len;
-	int		j;
-
-	arg_str[0] = '\0';
-	len = 0;
-	j = 0;
-	while (cmd->args && cmd->args[j])
-	{
-		if (len + ft_strlen(cmd->args[j]) + 1 >= size)
+		// Print command arguments
+		printf(YELLOW "Command args:\n" RESET);
+		if (cmd->args)
 		{
-			ft_strlcat(arg_str, "...", size);
-			break ;
+			for (i = 0; cmd->args[i]; i++)
+				printf("  - %s\n", cmd->args[i]);
 		}
-		if (j > 0)
-			ft_strlcat(arg_str, " ", size);
-		ft_strlcat(arg_str, cmd->args[j], size);
-		len += ft_strlen(cmd->args[j]) + 1;
-		j++;
+		else
+		{
+			printf("  (no arguments)\n");
+		}
+
+		// Print redirections
+		printf(YELLOW "Redirections:\n" RESET);
+		redir = cmd->redirs;
+		if (!redir)
+		{
+			printf("  (no redirections)\n");
+		}
+		else
+		{
+			printf(GRAY "  -----------------------------------------------------\n" RESET);
+			printf(YELLOW "  | %-16s | %-30s |" RESET "\n", "Type", "File/Delimiter");
+			printf(GRAY "  -----------------------------------------------------\n" RESET);
+			while (redir)
+			{
+				printf("  | %-16s | %-30s |\n",
+					token_type_to_string(redir->type),
+					redir->file ? redir->file : "(null)");
+				redir = redir->next;
+			}
+			printf(GRAY "  -----------------------------------------------------\n" RESET);
+		}
+		printf("\n\n");
+		cmd = cmd->next;
 	}
 }
 
-static void	print_footer(void)
-{
-	printf(GRAY "---------------------------------------------------------"
-		"------------------\n\n" RESET);
-}
+

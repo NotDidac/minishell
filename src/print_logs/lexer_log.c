@@ -6,16 +6,15 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 23:00:07 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/04 10:37:15 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/07 13:09:20 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "config.h"
+#include "print_logs/print_utils.h"
 #include "lexer/token_list.h"
 #include "colors.h"
+#include "config.h"
 #include <stdio.h>
-
-static const char	*token_type_to_string(t_token_type type);
 
 void	lexer_log(t_token *tokens)
 {
@@ -36,24 +35,4 @@ void	lexer_log(t_token *tokens)
 		cur = cur->next;
 	}
 	printf(GRAY "-----------------------------------------------\n\n" RESET);
-}
-
-static const char	*token_type_to_string(t_token_type type)
-{
-	if (type == TOKEN_WORD)
-		return ("WORD");
-	else if (type == TOKEN_STRING)
-		return ("STRING");
-	else if (type == TOKEN_PIPE)
-		return ("PIPE");
-	else if (type == TOKEN_REDIRECT_IN)
-		return ("REDIRECT_IN");
-	else if (type == TOKEN_REDIRECT_OUT)
-		return ("REDIRECT_OUT");
-	else if (type == TOKEN_REDIRECT_APPEND)
-		return ("REDIRECT_APPEND");
-	else if (type == TOKEN_HEREDOC)
-		return ("HEREDOC");
-	else
-		return ("INVALID");
 }
