@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:46:38 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/07 12:58:26 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/07 15:39:08 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	append_argument(t_command *command, const char *arg)
 	i = 0;
 	while (command->args && command->args[i])
 		i++;
-
 	new_args = malloc(sizeof(char *) * (i + 2));
 	if (!new_args)
 		err_exit("Parser", "Failed to allocate memory for arguments");

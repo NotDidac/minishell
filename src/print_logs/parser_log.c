@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 19:23:50 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/07 13:42:40 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/07 16:00:34 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,58 +17,86 @@
 
 #include <stdio.h>
 
+static void	print_command_args(t_command *command);
+static void	print_redirections(t_command *command);
+static void	print_redirections_body(t_redirection *redir);
+
 void	parser_log(t_command *commands)
 {
-	t_command		*cmd;
-	t_redirection	*redir;
-	int				i;
-	int				cmd_index = 1;
+	t_command		*command;
+	int				num_commands;
 
+	num_commands = 1;
+	command = commands;
 	if (!ENABLE_LOGS)
 		return ;
 	printf(BLUE "[Parser] " RESET "Parsed Command List:\n\n");
-	cmd = commands;
-	while (cmd)
+	while (command)
 	{
-		// Command header with index and separator
-		printf(CYAN "========== Command #%d ==========\n\n" RESET, cmd_index++);
-
-		// Print command arguments
-		printf(YELLOW "Command args:\n" RESET);
-		if (cmd->args)
-		{
-			for (i = 0; cmd->args[i]; i++)
-				printf("  - %s\n", cmd->args[i]);
-		}
-		else
-		{
-			printf("  (no arguments)\n");
-		}
-
-		// Print redirections
-		printf(YELLOW "Redirections:\n" RESET);
-		redir = cmd->redirs;
-		if (!redir)
-		{
-			printf("  (no redirections)\n");
-		}
-		else
-		{
-			printf(GRAY "  -----------------------------------------------------\n" RESET);
-			printf(YELLOW "  | %-16s | %-30s |" RESET "\n", "Type", "File/Delimiter");
-			printf(GRAY "  -----------------------------------------------------\n" RESET);
-			while (redir)
-			{
-				printf("  | %-16s | %-30s |\n",
-					token_type_to_string(redir->type),
-					redir->file ? redir->file : "(null)");
-				redir = redir->next;
-			}
-			printf(GRAY "  -----------------------------------------------------\n" RESET);
-		}
+		printf(CYAN "================= Command #%d =================\n\n" RESET,
+			num_commands++);
+		print_command_args(command);
+		print_redirections(command);
 		printf("\n\n");
-		cmd = cmd->next;
+		command = command->next;
 	}
 }
 
+static void	print_command_args(t_command *command)
+{
+	size_t	i;
 
+	printf(YELLOW "Command arguments:\n" RESET);
+	if (command->args)
+	{
+		i = 0;
+		while (command->args[i])
+		{
+			printf("  - %s\n", command->args[i]);
+			i++;
+		}
+	}
+	else
+		printf("  (no arguments)\n");
+	printf("\n");
+}
+
+static void	print_redirections(t_command *command)
+{
+	t_redirection	*redir;
+
+	printf(YELLOW "Redirections:\n" RESET);
+	redir = command->redirs;
+	if (!redir)
+	{
+		printf("  (no redirections)\n");
+		return ;
+	}
+	printf(GRAY "  -----------------------------------------------------\n"
+		RESET);
+	print_redirections_body(redir);
+}
+
+static void	print_redirections_body(t_redirection *redir)
+{
+	char	*file_display;
+
+	if (!redir)
+		return ;
+	printf(YELLOW "  | %-16s | %-30s |" RESET "\n",
+		"Type", "File/Delimiter");
+	printf(GRAY "  -----------------------------------------------------\n"
+		RESET);
+	while (redir)
+	{
+		if (redir->file)
+			file_display = redir->file;
+		else
+			file_display = "(null)";
+		printf("  | %-16s | %-30s |\n",
+			token_type_to_string(redir->type), file_display);
+		redir = redir->next;
+	}
+	printf(GRAY "  -----------------------------------------------------\n"
+		RESET);
+}

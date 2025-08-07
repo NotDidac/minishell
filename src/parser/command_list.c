@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 10:59:54 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/07 12:58:36 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/07 15:39:46 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	append_command(t_command **head, t_command *new_cmd)
 		*head = new_cmd;
 		return ;
 	}
-
 	temp = *head;
 	while (temp->next)
 		temp = temp->next;
@@ -57,14 +56,13 @@ t_redirection	*new_redirection(t_token_type type, const char *file)
 	{
 		redir->file = ft_strdup(file);
 		if (!redir->file)
-			err_exit("Parser", "Failed to allocate memory for redirection file");
+			err_exit("Parser", "Failed to allocate memory for redirection");
 	}
 	else
 		redir->file = NULL;
 	redir->next = NULL;
 	return (redir);
 }
-
 
 void	append_redirection(t_redirection **head, t_redirection *new_redir)
 {

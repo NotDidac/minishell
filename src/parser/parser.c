@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:26:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/07 13:47:47 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/07 15:38:53 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,11 @@ static void	set_command_arguments(t_token **tokens, t_command *command)
 	t_token	*current_token;
 
 	current_token = *tokens;
-	while (current_token && current_token->type != TOKEN_PIPE && !is_redirection(current_token->type))
+	while (current_token && current_token->type != TOKEN_PIPE
+		&& !is_redirection(current_token->type))
 	{
-		if (current_token->type == TOKEN_WORD || current_token->type == TOKEN_STRING)
+		if (current_token->type == TOKEN_WORD
+			|| current_token->type == TOKEN_STRING)
 			append_argument(command, current_token->value);
 		else if (current_token->type == TOKEN_INVALID)
 		{
@@ -104,7 +106,8 @@ static void	set_redirections(t_token **tokens, t_command *command)
 	{
 		type = current_token->type;
 		current_token = current_token->next;
-		if(!current_token || (current_token->type != TOKEN_WORD && current_token->type != TOKEN_STRING))
+		if (!current_token || (current_token->type != TOKEN_WORD
+				&& current_token->type != TOKEN_STRING))
 		{
 			clear_tokens(*tokens);
 			err_exit("Parser", "Redirection must be followed by a filename");
