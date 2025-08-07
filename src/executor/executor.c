@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:31:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/06 16:18:17 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/07 16:07:56 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	executor(t_command *commands)
 {
 	if (!commands)
 	{
-		printf("\nNo commands to execute.\n");
+		printf("No commands to execute.\n");
 		return ;
 	}
 	clear_commands(commands);

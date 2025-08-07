@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:10:59 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/06 15:37:07 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/07 16:07:32 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_token	*lexer(char *user_input)
 {
 	t_token	*tokens;
 
-	if (!user_input)
+	if (!user_input || !*user_input)
 		return (NULL);
 	tokens = tokenize(user_input);
 	free(user_input);
