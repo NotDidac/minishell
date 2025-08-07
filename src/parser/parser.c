@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:26:13 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/07 15:38:53 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/07 17:06:26 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@
 #include "free/clear_tokens.h"
 #include "utils/err_exit.h"
 
-#include <stddef.h>
+#include <stdio.h>
 
 static t_command	*parse(t_token *tokens);
 static void			set_command_arguments(t_token **tokens, t_command *command);
 static void			set_redirections(t_token **tokens, t_command *command);
+static void			handle_invalid_command(t_command *command,
+						t_token **tokens);
 
 t_command	*parser(t_token *tokens)
 {
@@ -68,9 +70,9 @@ static t_command	*parse(t_token *tokens)
 		}
 		set_command_arguments(&tokens, current_command);
 		set_redirections(&tokens, current_command);
+		if (!current_command->is_valid)
+			handle_invalid_command(current_command, &tokens);
 	}
-	if (!current_command || !current_command->args || !current_command->args[0])
-		err_exit("Parser", "Last command is empty");
 	return (head);
 }
 
@@ -87,12 +89,15 @@ static void	set_command_arguments(t_token **tokens, t_command *command)
 			append_argument(command, current_token->value);
 		else if (current_token->type == TOKEN_INVALID)
 		{
-			clear_tokens(*tokens);
-			err_exit("Parser", "Invalid token encountered");
+			command->is_valid = false;
+			printf("Invalid token encountered: %s\n", current_token->value);
+			break ;
 		}
 		current_token = current_token->next;
 	}
 	*tokens = current_token;
+	if (!command->args || !command->args[0])
+		command->is_valid = false;
 }
 
 static void	set_redirections(t_token **tokens, t_command *command)
@@ -102,6 +107,7 @@ static void	set_redirections(t_token **tokens, t_command *command)
 	t_redirection	*new_redir;
 
 	current_token = *tokens;
+	handle_invalid_command(command, tokens);
 	while (current_token && is_redirection(current_token->type))
 	{
 		type = current_token->type;
@@ -109,8 +115,9 @@ static void	set_redirections(t_token **tokens, t_command *command)
 		if (!current_token || (current_token->type != TOKEN_WORD
 				&& current_token->type != TOKEN_STRING))
 		{
-			clear_tokens(*tokens);
-			err_exit("Parser", "Redirection must be followed by a filename");
+			command->is_valid = false;
+			printf("Redirection must be followed by a filename\n");
+			return ;
 		}
 		new_redir = new_redirection(type, current_token->value);
 		if (!command->redirs)
@@ -119,5 +126,17 @@ static void	set_redirections(t_token **tokens, t_command *command)
 			append_redirection(&command->redirs, new_redir);
 		current_token = current_token->next;
 	}
+	*tokens = current_token;
+}
+
+static void	handle_invalid_command(t_command *command, t_token **tokens)
+{
+	t_token	*current_token;
+
+	if (!command || command->is_valid)
+		return ;
+	current_token = *tokens;
+	while (current_token)
+		current_token = current_token->next;
 	*tokens = current_token;
 }

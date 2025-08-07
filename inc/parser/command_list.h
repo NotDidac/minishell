@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 11:02:10 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/07 15:36:59 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/07 16:25:44 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_command
 {
 	char			**args;		// Command + args array (argv)
 	t_redirection	*redirs;	// Linked list of all redirections for this cmd
+	bool			is_valid;	// Flag to indicate if the command is valid
 	t_command		*next;		// Pointer to the next command in the list
 }	t_command;
 

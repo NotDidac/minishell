@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 10:59:54 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/07 15:39:46 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/07 16:25:50 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_command	*new_command(void)
 		err_exit("Parser", "Failed to allocate memory for command");
 	cmd->args = NULL;
 	cmd->redirs = NULL;
+	cmd->is_valid = true;
 	cmd->next = NULL;
 	return (cmd);
 }

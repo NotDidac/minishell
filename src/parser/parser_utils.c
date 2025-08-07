@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:46:38 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/07 15:39:08 by didguill         ###   ########.fr       */
+/*   Updated: 2025/08/07 16:57:46 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ void	handle_pipe(t_token **tokens, t_command **current_command)
 	command = *current_command;
 	token = *tokens;
 	if (!command->args || !command->args[0])
-		err_exit("Parser", "Empty command before pipe");
+	{
+		command->is_valid = false;
+		printf("Warning: Empty command before pipe.\n");
+	}
 	*tokens = token->next;
 	*current_command = NULL;
 }
