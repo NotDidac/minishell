@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 14:57:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/07 16:05:14 by didguill         ###   ########.fr       */
+/*   Updated: 2025/11/27 19:12:43 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	setup_line_reader(void)
 static void	sigint_handler(int signum)
 {
 	(void)signum;
+	g_signal = SIGINT;
 	write (STDOUT_FILENO, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);

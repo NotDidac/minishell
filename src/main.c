@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/06 16:37:02 by didguill         ###   ########.fr       */
+/*   Updated: 2025/11/27 19:28:11 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@
 #include "parser/parser.h"
 #include "executor/executor.h"
 #include "utils/err_exit.h"
+#include "config.h"
 
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-int	g_signal = 0;
+volatile sig_atomic_t	g_signal = 0;
 
 static void	minishell_loop(void);
 static void	arg_check(int argc);
@@ -72,6 +73,8 @@ static void	minishell_loop(void)
 	while (true)
 	{
 		user_input = read_user_input();
+		if (g_signal == SIGINT)
+			g_signal = 0;
 		if (!user_input)
 			break ;
 		tokens = lexer(user_input);
