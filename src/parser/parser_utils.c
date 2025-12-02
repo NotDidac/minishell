@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:46:38 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/07 16:57:46 by didguill         ###   ########.fr       */
+/*   Updated: 2025/12/02 15:47:09 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,36 @@ void	append_argument(t_command *command, const char *arg)
 	new_args[i + 1] = NULL;
 	free(command->args);
 	command->args = new_args;
+}
+
+char	*get_env_value(const char *var)
+{
+	char	*val;
+
+	val = getenv(var);
+	if (val)
+		return (ft_strdup(val));
+	else
+		return (ft_strdup(""));
+}
+
+char	*ft_strjoin_char(const char *s, char c)
+{
+	size_t	len;
+	char	*res;
+	size_t	i;
+
+	len = ft_strlen(s);
+	res = malloc(len + 2);
+	if (!res)
+		err_exit("Parser", "Failed memory allocation");
+	i = 0;
+	while (i < len)
+	{
+		res[i] = s[i];
+		i++;
+	}
+	res[len] = c;
+	res[len + 1] = '\0';
+	return (res);
 }

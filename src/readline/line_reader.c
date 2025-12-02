@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 14:57:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/11/27 19:12:43 by didguill         ###   ########.fr       */
+/*   Updated: 2025/12/02 13:45:05 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 #include <readline/readline.h>
 #include <readline/history.h>
-#include <signal.h>
 
 static char	*get_prompt(void);
 static void	sigint_handler(int signum);

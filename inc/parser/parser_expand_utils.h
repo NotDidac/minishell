@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   parser_expand_utils.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/03 19:00:26 by didguill          #+#    #+#             */
-/*   Updated: 2025/11/27 20:54:27 by didguill         ###   ########.fr       */
+/*   Created: 2025/12/02 14:29:41 by didguill          #+#    #+#             */
+/*   Updated: 2025/12/02 15:32:13 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef PARSER_EXPAND_UTILS_H
+# define PARSER_EXPAND_UTILS_H
 
 # include "lexer/token_list.h"
-# include "parser/command_list.h"
 
-t_command	*parser(t_token *tokens, int last_exit_status);
+char	*expand_argument(t_token *token, int last_exit_status);
 
 #endif

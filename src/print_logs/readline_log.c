@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:49:22 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/03 18:53:12 by didguill         ###   ########.fr       */
+/*   Updated: 2025/12/02 13:44:54 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void	readline_log(const char *line)
 		return ;
 	printf(BLUE "\n[Readline] " RESET);
 	printf("Input: ");
-	printf(CYAN "\"%s\"\n\n" RESET, line);
+	printf(CYAN "%s\n\n" RESET, line);
 }

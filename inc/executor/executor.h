@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 19:17:57 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/04 11:07:05 by didguill         ###   ########.fr       */
+/*   Updated: 2025/11/27 20:52:33 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "parser/command_list.h"
 
-void	executor(t_command *commands);
+int	executor(t_command *commands, int last_exit_status);
 
 #endif

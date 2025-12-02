@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:31:40 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/07 16:07:56 by didguill         ###   ########.fr       */
+/*   Updated: 2025/11/27 20:53:27 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ static void	handle_redirections(t_redirection *redirs)
             handle_append_redirect(current->file);
         else if (current->type == TOKEN_HEREDOC)
             handle_heredoc(current->file);
-        
+
         current = current->next;
     }
 }
@@ -153,13 +153,13 @@ static void	execute_command(t_command *cmd)
         execute_external_command(cmd->args);
 }
 
-void	executor(t_command *commands)
+int	executor(t_command *commands, int last_exit_status)
 {
     t_command	*current;
 
     if (!commands)
-        return;
-    
+        return (last_exit_status);
+
     current = commands;
     while (current)
     {
@@ -170,9 +170,10 @@ void	executor(t_command *commands)
             if (current->args && current->args[0])
                 execute_command(current);
         }
-        
+
         current = current->next;
     }
+	return (last_exit_status);
 }
 
 static void	builtin_echo(char **args)
@@ -206,7 +207,7 @@ static void	builtin_cd(char **args)
         path = getenv("HOME");
     else
         path = args[1];
-    
+
     if (chdir(path) != 0)
         perror("cd");
 }
@@ -286,7 +287,7 @@ static void	builtin_exit(char **args)
     exit_code = 0;
     if (args[1])
         exit_code = atoi(args[1]);
-    
+
     printf("exit\n");
     exit(exit_code);
 }

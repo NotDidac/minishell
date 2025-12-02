@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 23:10:59 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/07 16:07:32 by didguill         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:41:05 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,27 +69,26 @@ static t_token	*tokenize(char *user_input)
 
 static int	handle_quote(char *user_input, int i, t_token **tokens)
 {
-	char	*content;
-	char	quote;
-	int		str_start;
-	t_token	*token;
+	char			*content;
+	char			quote;
+	int				start;
+	t_token			*token;
+	t_token_type	type;
 
 	quote = user_input[i];
-	i++;
-	str_start = i;
+	if (quote == '\'')
+		type = TOKEN_SQUOTE;
+	else
+		type = TOKEN_DQUOTE;
+	start = ++i;
 	while (user_input[i] && user_input[i] != quote)
 		i++;
 	if (!user_input[i])
 		err_exit("lexer", "Unclosed quote");
-	content = ft_strndup(&user_input[str_start], i - str_start);
-	if (!content)
-		err_exit("lexer", "Failed to allocate memory for quoted token");
-	token = new_token(TOKEN_STRING, content);
-	if (!token)
-	{
-		free(content);
-		err_exit("lexer", "Failed to create token for quoted string");
-	}
+	content = ft_strndup(&user_input[start], i - start);
+	token = new_token(type, content);
+	if (!content || !token)
+		err_exit("lexer", "Failed to allocate quoted token");
 	add_token(tokens, token);
 	return (i + 1);
 }

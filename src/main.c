@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:57:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/11/27 19:28:11 by didguill         ###   ########.fr       */
+/*   Updated: 2025/11/27 20:54:52 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ static void	minishell_loop(void)
 	t_command	*commands;
 	t_token		*tokens;
 	char		*user_input;
+	int			last_exit_status;
 
+	last_exit_status = 0;
 	while (true)
 	{
 		user_input = read_user_input();
@@ -78,8 +80,8 @@ static void	minishell_loop(void)
 		if (!user_input)
 			break ;
 		tokens = lexer(user_input);
-		commands = parser(tokens);
-		executor(commands);
+		commands = parser(tokens, last_exit_status);
+		last_exit_status = executor(commands, last_exit_status);
 	}
 	rl_clear_history();
 }

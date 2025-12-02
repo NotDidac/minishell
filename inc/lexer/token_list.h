@@ -6,7 +6,7 @@
 /*   By: didguill <didguill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 10:33:49 by didguill          #+#    #+#             */
-/*   Updated: 2025/08/04 11:09:49 by didguill         ###   ########.fr       */
+/*   Updated: 2025/12/02 13:32:46 by didguill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ typedef struct s_token	t_token;
 
 typedef enum e_token_type
 {
-	TOKEN_WORD,					// Any word not in quotes or a keyword/operator
-	TOKEN_STRING,				// Quoted string (single or double)
+	TOKEN_WORD,					// unquoted
+	TOKEN_SQUOTE,				// 'single quoted'	(no expansion)
+	TOKEN_DQUOTE,				// "double quoted"	(expand $)
 	TOKEN_PIPE,					// |
 	TOKEN_REDIRECT_IN,			// <
 	TOKEN_REDIRECT_OUT,			// >

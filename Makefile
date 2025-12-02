@@ -6,7 +6,7 @@
 #    By: didguill <didguill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 16:58:13 by didguill          #+#    #+#              #
-#    Updated: 2025/08/07 13:09:01 by didguill         ###   ########.fr        #
+#    Updated: 2025/12/02 14:38:20 by didguill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ LIBFT_A		= $(LIBFT_DIR)libft.a
 # Source files
 SRC_READLINE	= line_reader.c
 SRC_LEXER		= lexer.c operator_handler.c lexer_utils.c token_list.c
-SRC_PARSER		= parser.c parser_utils.c command_list.c
+SRC_PARSER		= parser.c parser_utils.c command_list.c parser_expand_utils.c
 SRC_EXECUTOR	= executor.c
 SRC_BUILTINS	= builtins.c
 SRC_UTILS		= err_exit.c
